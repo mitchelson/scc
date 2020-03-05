@@ -4,6 +4,7 @@ const routes = require('./routes');
 
 const app = express();
 
+//conxão com o banco de dados
 mongoose.connect('mongodb+srv://root:root@cluster0-v5kh6.mongodb.net/scc?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,

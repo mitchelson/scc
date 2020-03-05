@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+
 const UserSchema = new mongoose.Schema({
     _idMilitar: {               //Indica Id único no sistema para cada militar
         type: Number,
@@ -38,7 +39,7 @@ const UserSchema = new mongoose.Schema({
         select: false,
         require: true,
         set: value => 
-            crypto
+            crypto                      //Criptografia de senha
                 .createHash('md5')
                 .update(value)
                 .digest('hex'),

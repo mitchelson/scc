@@ -5,13 +5,12 @@ const crypto = require('crypto');
 
 const routes = Router();
 
-routes.get('/listar', async (request, response) => {
-    const militar = await Militar.find(); //pode aplicar filtro dentro da função ex: find({ "_idMilitar":"123", })
-
+routes.get('/listar', async (request, response) => {        // listar militar
+    const militar = await Militar.find();
     return response.json(militar);
 })
 
-routes.post('/cadastrar', async (request, response) => {
+routes.post('/cadastrar', async (request, response) => {    // cadastrar militar
     const { _idMilitar, nome, senha} = request.body;
 
     let retornoMilitar = await Militar.findOne({ _idMilitar });
@@ -25,10 +24,10 @@ routes.post('/cadastrar', async (request, response) => {
     return response.json(retornoMilitar); 
 });
 
-routes.post('/autenticar', async (request, response) => {
+routes.post('/autenticar', async (request, response) => {       // autenticar
     const { _idMilitar, senha } = request.body;
 
-    const user = await Militar.findOne({ _idMilitar }).select('+password');
+    const user = await Militar.findOne({ _idMilitar }).select('+password'); // busca _idMilitar no banco junto com a senha
 
     if(!user){
         return response.status(400).send({ error: 'Militar não encontrado'});
