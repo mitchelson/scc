@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 
-const UserSchema = new mongoose.Schema({
+const MilitarSchema = new mongoose.Schema({
     _idMilitar: {               //Indica Id único no sistema para cada militar
         type: Number,
         //require: true,
@@ -46,4 +46,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Militar', MilitarSchema);

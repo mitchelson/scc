@@ -1,39 +1,43 @@
 const { Router } = require('express');
-const axios = require('axios');
 const Militar = require('./models/Militar');
 const crypto = require('crypto');
+const MilitarController = require('./controllers/MilitarController');
+const ViaturaController = require('./controllers/ViaturaController');
 
 const routes = Router();
 
-routes.get('/listar', async (request, response) => {        // listar militar
-    const militar = await Militar.find();
-    return response.json(militar);
-})
+routes.get('/militar', MilitarController.index);
 
-routes.post('/cadastrar', async (request, response) => {    // cadastrar militar
-    const { _idMilitar, nome, senha} = request.body;
+routes.get('/militar/:id', MilitarController.show);
 
-    let retornoMilitar = await Militar.findOne({ _idMilitar });
+routes.post('/militar', MilitarController.store);
 
-    if(!retornoMilitar) {
-        retornoMilitar = await Militar.create({
-            _idMilitar, nome, senha
-        });
-    }
+routes.put('/militar/:id', MilitarController.update);
 
-    return response.json(retornoMilitar); 
-});
+routes.delete('/militar/:id', MilitarController.destroy);
+
+
+
+routes.get('/viatura', ViaturaController.index);
+
+routes.get('/viatura/:id', ViaturaController.show);
+
+routes.post('/viatura', ViaturaController.store);
+
+routes.put('/viatura/:id', ViaturaController.update);
+
+routes.delete('/viatura/:id', ViaturaController.destroy);
+
 
 routes.post('/autenticar', async (request, response) => {       // autenticar
     const { _idMilitar, senha } = request.body;
 
-    const user = await Militar.findOne({ _idMilitar }).select('+password'); // busca _idMilitar no banco junto com a senha
-
-    if(!user){
-        return response.status(400).send({ error: 'Militar não encontrado'});
+    try{
+        const militar = await Militar.findOne({ _idMilitar }).select('+password');
+        return response.json(militar);
+    } catch (err) {
+        return response.status(400).json({error: "Erro ao Listar Militares"});
     }
-
-
 });
 
 module.exports = routes;
