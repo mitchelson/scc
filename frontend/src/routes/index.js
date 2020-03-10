@@ -2,13 +2,17 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Main from '../pages/Main';
-import Login from '../pages/Login';
+import Militar from '../pages/Militar';
+import Viaturas from '../pages/Viaturas';
+import Relatorios from '../pages/Relatorios';
 
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Main} />
-      <Route path="/login" exact component={Login} />
+      <Route path="/inicio" exact component={Main} />
+      <Route path="/militar" exact component={Militar} />
+      <Route path="/viaturas" exact component={Viaturas} />
+      <Route path="/relatorios" exact component={Relatorios} />
     </Switch>
   );
 }

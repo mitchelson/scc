@@ -1,11 +1,18 @@
 import React from 'react';
 
-import { Container, Title } from './styles';
+import { Container, Title, Table, Box } from './styles';
 
 function Main() {
   return (
     <Container>
-      <Title>Main</Title>
+      <Title>Tela Principal</Title>
+      <Box>
+        <Table>
+          <table>
+
+          </table>
+        </Table>
+      </Box>
     </Container>
   );
 }

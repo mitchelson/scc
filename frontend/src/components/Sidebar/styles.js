@@ -3,28 +3,31 @@ import { NavLink } from 'react-router-dom';
 
 export const Container = styled.aside`
   display: flex;
-  flex-shrink: 0;
   align-items: center;
-  width: 100px;
-  height: 100%;
-  background-image: linear-gradient(to bottom right, #009cde, #0073cc);
+  width: 200px;
+  height: 500px;
   flex-direction: column;
-
-  transition: all 0.2s ease 0s;
-
-  &:hover {
-    width: 240px;
-  }
+  display:flex;
+  justify-content: space-around;
+  vertical-align: middle;
+  margin:20px;
 `;
 
 export const SidebarLink = styled(NavLink)`
-  width: 100%;
+  width: 200px;
+  height:70px;
   text-align: center;
   text-decoration: none;
-  padding-top: 10px;
-  color: #eee;
-
+  color: #000;
+  font-size:20px;
+  font-weight:bold;
+  background:#fff;
+  border-radius:6px;
+  padding:25px;
   &:hover {
-    color: #fff;
+    color: #dcdcdc;
+    transition-duration:300ms;
+    border:2px solid;
+    border-color:green;
   }
 `;

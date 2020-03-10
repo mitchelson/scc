@@ -9,13 +9,8 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #fff;
-  float:right;
+  color: #009cde;
 `;
-export const Table = styled.table`
-  float:right;
-`;
-
 export const Box = styled.div`
   display: flex;
   width: 95%;
