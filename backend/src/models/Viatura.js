@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 const ViaturaSchema = new mongoose.Schema({
-    _idViatura: {               //Indica Id único no sistema para cada viatura
+    idViatura: {               //Indica Id único no sistema para cada viatura
         type: Number,
         //require: true,
     },

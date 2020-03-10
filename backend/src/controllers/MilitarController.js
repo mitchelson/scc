@@ -2,23 +2,26 @@ const Militar = require('../models/Militar');
 const axios = require('axios');
 
 class MilitarController {
-    async index(request, responde){         //Listar todos os militares sem nenhum parametro
+    async index(request, response){         //Listar todos os militares sem nenhum parametro
         try{
-            const militar = await Militar.findAll();
+            const militar = await Militar.find();
             return response.json(militar);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Listar Militares"});
         }
     }
-    async show(request, responde){          //Pesquisar miltiar especifico passando id como parametro
+    async show(request, response){          //Pesquisar militar especifico passando id do militar como parametro
         try{
-            const militar = await Militar.findByPk(request.params._idMilitar);
+            const find = request.query.idMilitar;
+            const militar = await Militar.find({
+                idMilitar: find
+            });
             return response.json(militar);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Pesquisar Militar"});
         }
     }
-    async store(request, responde){         //Cadastrar novo militar
+    async store(request, response){         //Cadastrar novo militar
         try{
             const militar = await Militar.create(request.body);
             return response.json(militar);
@@ -26,20 +29,18 @@ class MilitarController {
             return response.status(400).json({error: "Erro ao Cadastrar Militar"});
         }
     }
-    async update(request, responde){        //Atualizar regristro de Militar
+    async update(request, response){        //Atualizar regristro de Militar
         try{
-            const militar = await Militar.findByPk(request.params._idMilitar);
-            await militar.update(request.body);
-            return response.json(militar);
+            await Militar.updateMany(request.query, request.body);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Atualizar Registro do Militar"});
         }
     }
-    async destroy(request, responde){       //Deletar registro específico, necessita de parametro id
+    async destroy(request, response){       //Deletar registro específico, necessita de parametro id
         try{
-            const militar = await Militar.findByPk(rqeuest.params._idMilitar);
-            await militar.destroy();
-            return response.json();
+            //const militar = await Militar.find(request.query.idMilitar);
+            const resultado = await Militar.deleteOne(request.query);
+            return response.json(resultado);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Deletar Registro do Militar"});
         }

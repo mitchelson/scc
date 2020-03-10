@@ -6,34 +6,34 @@ const ViaturaController = require('./controllers/ViaturaController');
 
 const routes = Router();
 
-routes.get('/militar', MilitarController.index);
+routes.get('/listar-militar', MilitarController.index);
 
-routes.get('/militar/:id', MilitarController.show);
+routes.get('/pesquisar-militar', MilitarController.show);
 
-routes.post('/militar', MilitarController.store);
+routes.post('/cadastrar-militar', MilitarController.store);       //Cadastrar
 
-routes.put('/militar/:id', MilitarController.update);
+routes.put('/atualizar-militar', MilitarController.update);
 
-routes.delete('/militar/:id', MilitarController.destroy);
+routes.delete('/deletar-militar', MilitarController.destroy);
 
 
 
-routes.get('/viatura', ViaturaController.index);
+routes.get('/listar-viatura', ViaturaController.index);
 
-routes.get('/viatura/:id', ViaturaController.show);
+routes.get('/pesquisar-viatura', ViaturaController.show);
 
-routes.post('/viatura', ViaturaController.store);
+routes.post('/cadastrar-viatura', ViaturaController.store);
 
-routes.put('/viatura/:id', ViaturaController.update);
+routes.put('/atualizar-viatura', ViaturaController.update);
 
-routes.delete('/viatura/:id', ViaturaController.destroy);
+routes.delete('/deletar-viatura', ViaturaController.destroy);
 
 
 routes.post('/autenticar', async (request, response) => {       // autenticar
     const { _idMilitar, senha } = request.body;
 
     try{
-        const militar = await Militar.findOne({ _idMilitar }).select('+password');
+        const militar = await Militar.findOne({ _idMilitar }).select('+senha');
         return response.json(militar);
     } catch (err) {
         return response.status(400).json({error: "Erro ao Listar Militares"});

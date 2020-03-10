@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 const MilitarSchema = new mongoose.Schema({
-    _idMilitar: {               //Indica Id único no sistema para cada militar
+    idMilitar: {               //Indica Id único no sistema para cada militar
         type: Number,
         //require: true,
     },
