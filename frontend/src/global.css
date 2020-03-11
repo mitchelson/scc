@@ -8,14 +8,11 @@
 }
 
 html, body, #root {
-    height: 100%;
-
+    background-image:url('./public/background.jpg');
 }
 
 body{
-    padding-top: 100px;
-    background: #77d186;
-    -webkit-font-smoothing:antialiased;
+
 }
 
 body, input, button {

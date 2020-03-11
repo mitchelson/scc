@@ -18,17 +18,17 @@ export const SidebarLink = styled(NavLink)`
   height:70px;
   text-align: center;
   text-decoration: none;
-  color: #000;
+  color: #383838;
   font-size:20px;
   font-weight:bold;
   background:#fff;
   border-radius:6px;
   padding:25px;
+  transition-duration:300ms;
   &:hover {
-    color: #dcdcdc;
+    color: #fff;
     transition-duration:300ms;
-    border:2px solid;
-    border-color:green;
+    background:#2b2b2b;
   }
 `;
 export const Logout = styled(NavLink)`
@@ -39,13 +39,13 @@ export const Logout = styled(NavLink)`
   color: #fff;
   font-size:20px;
   font-weight:bold;
-  background:red;
+  background:#ff7373;
   border-radius:6px;
   padding:25px;
+  transition-duration:300ms;
   &:hover {
-    color: #dcdcdc;
+    color: #fff;
     transition-duration:300ms;
-    border:2px solid;
-    border-color:green;
+    background:#2b2b2b;
   }
 `;

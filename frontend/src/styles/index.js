@@ -16,8 +16,7 @@ export default createGlobalStyle`
       box-sizing: border-box;
       outline: 0;
     }
-    html,
-    body,
+    html, body,
     #root {
       
     }
@@ -25,6 +24,5 @@ export default createGlobalStyle`
       text-rendering: optimizeLegibility !important;
       font-family: sans-serif;
       -webkit-font-smoothing: antialiased;
-      background: #eee;
     }
 `;
