@@ -13,5 +13,4 @@ function Sidebar() {
     </Container>
   );
 }
-//<SidebarLink to="/sair">Sair</SidebarLink>
 export default Sidebar;

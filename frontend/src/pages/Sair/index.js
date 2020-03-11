@@ -7,7 +7,7 @@ function Sair() {
     <Container>
       <Title>Sair</Title>
       <Box>
-        <Text>Você tem certeza que deseja sair?</Text>
+        Você tem certeza que deseja sair?
         <button>Sair</button><button>Cancelar</button>
       </Box>
     </Container>
