@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #009cde;
+  color: #fff;
 `;
 export const Box = styled.div`
   display: flex;
