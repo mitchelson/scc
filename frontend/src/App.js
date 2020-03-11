@@ -9,7 +9,6 @@ import GlobalStyle, { Container } from './styles';
 import './App.css';
 import './global.css';
 
-
 function App() {
   return (
     
@@ -24,18 +23,3 @@ function App() {
 }
 
 export default App;
-
-
-/*<div id="app">
-      <aside id="menu">
-        <button id="menuLateral">INÍCIO</button>
-        <button id="menuLateral">USUÁRIOS</button>
-        <button id="menuLateral">VIATURAS</button>
-        <button id="menuLateral">RELATÓRIO</button>
-        <button id="menuLateral">SAIR</button>
-      </aside>
-      <main id="painel">
-        <div id="painelPrincipal"></div>
-        </div>
-      </main>
-    </div>*/

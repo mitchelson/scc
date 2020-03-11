@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, SidebarLink } from './styles';
+import { Container, SidebarLink, Logout } from './styles';
 
 function Sidebar() {
   return (
@@ -9,7 +9,7 @@ function Sidebar() {
       <SidebarLink to="/militar">Militar</SidebarLink>
       <SidebarLink to="/viaturas">Viaturas</SidebarLink>
       <SidebarLink to="/relatorios">Relatórios</SidebarLink>
-      
+      <Logout to="/sair">Sair</Logout>
     </Container>
   );
 }

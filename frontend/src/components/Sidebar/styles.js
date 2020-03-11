@@ -10,11 +10,11 @@ export const Container = styled.aside`
   display:flex;
   justify-content: space-around;
   vertical-align: middle;
-  margin:20px;
+  margin-left:20px;
 `;
 
 export const SidebarLink = styled(NavLink)`
-  width: 200px;
+  width: 150px;
   height:70px;
   text-align: center;
   text-decoration: none;
@@ -22,6 +22,24 @@ export const SidebarLink = styled(NavLink)`
   font-size:20px;
   font-weight:bold;
   background:#fff;
+  border-radius:6px;
+  padding:25px;
+  &:hover {
+    color: #dcdcdc;
+    transition-duration:300ms;
+    border:2px solid;
+    border-color:green;
+  }
+`;
+export const Logout = styled(NavLink)`
+  width: 150px;
+  height:70px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-size:20px;
+  font-weight:bold;
+  background:red;
   border-radius:6px;
   padding:25px;
   &:hover {
