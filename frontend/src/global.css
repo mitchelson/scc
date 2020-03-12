@@ -2,19 +2,14 @@
 
 *{
     margin: 0;
+    
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 html, body, #root {
     background-image:url('./public/background.jpg');
-}
-
-body{
-
-}
-
-body, input, button {
-    font-family: Roboto, sans-serif;
+    margin-top: 50px;
 }

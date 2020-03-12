@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 500px;
   align-content:center;
   align-items:center;
-  background:green;
+  background:#fff;
 `;
 
 export default createGlobalStyle`

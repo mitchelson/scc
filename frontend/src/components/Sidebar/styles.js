@@ -21,8 +21,8 @@ export const SidebarLink = styled(NavLink)`
   color: #383838;
   font-size:20px;
   font-weight:bold;
-  background:#fff;
-  border-radius:6px;
+  background:#dbdbdb;
+  
   padding:25px;
   transition-duration:300ms;
   &:hover {
@@ -40,7 +40,7 @@ export const Logout = styled(NavLink)`
   font-size:20px;
   font-weight:bold;
   background:#ff7373;
-  border-radius:6px;
+  
   padding:25px;
   transition-duration:300ms;
   &:hover {
