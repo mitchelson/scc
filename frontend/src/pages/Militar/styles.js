@@ -6,17 +6,30 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-export const Title = styled.h1`
-  color: #fff;
+  & h1{
+    color:#000;
+  }
 `;
 export const Box = styled.div`
-  display: flex;
+  display: grid;
   width: 95%;
   height:400px;
-  background:#111; 
+  background:#ddd; 
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  grid-template-columns: repeat(2, 1fr);
+  padding:30px;
+  gap:30px;
+`;
+export const Formulario = styled.div` /* Tela de Cadastro/Edição de Registro de Militar */
+  width:100%;
+  height:100%;
+  color: #ff0;
+  background:#aaa;
+`;
+export const Registros = styled.div` /* Tela de Listagem de Registro de Militar */
+  width:100%;
+  height:100%;
+  color: #f00;
+  background:#aaa;
 `;

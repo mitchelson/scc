@@ -14,6 +14,23 @@ export const Title = styled.h1`
 `;
 export const Table = styled.table`
   float:right;
+  color:red;
+  width:100%;
+  height:400px;
+  background:white;
+  & tr{
+    color:black;
+    background:blue;
+    position:absolute;
+    min-height:20px;
+    max-height:40px;
+  }
+  & td{
+    color:black;
+    background:yellow;
+    min-height:20px;
+    max-height:40px;
+  }
 `;
 
 export const Box = styled.div`
