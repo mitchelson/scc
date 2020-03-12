@@ -8,9 +8,22 @@ function Main() {
       <Title>Tela Principal</Title>
       <Box>
         <Table>
-          <table>
-
-          </table>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Age</th>
+          </tr>
+          <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+          </tr>
         </Table>
       </Box>
     </Container>
