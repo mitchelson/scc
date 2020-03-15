@@ -14,24 +14,28 @@
     display: grid;
     width: 100%;
     height:100%;
-     
     justify-content: center;
     align-items: center;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: 300px 500px;
-    
+    grid-template-columns: 300px 700px;
     gap:30px;
     text-align: center;
 }
 
-#form{
+form{
     padding-top: 10px;
     width:100%;
     height:100%;
-    color: #ff0;
-    background:#d4d4d4;
+    background:#dcdcdc;
 }
-#form input{
+form input{
+    font-size: 16px;
+    width: 92%;
+    height: 30px;
+    border:0;
+    padding-left: 5px;
+}
+form select{
     font-size: 16px;
     width: 92%;
     height: 30px;
@@ -40,11 +44,10 @@
 }
 #registros{
     padding-top: 10px;
-    width:500px;
+    width:90%;
     height:100%;
     overflow: hidden;
-    color: #f00;
-    background:#d4d4d4;
+    background:#dcdcdc;
 }
 
 #btnPrincipal{
@@ -76,8 +79,53 @@ button:active{
     background-image: linear-gradient(to bottom right, #ff6e6e, #ffabab);
 }
 table{
-    width: 480px;
+    width: 97%;
 }
 table th {
-    background: red;
+    height: 30px;
+    background: gray;
+    color:white;
+}
+p{
+    margin-top: 15px;
+}
+
+
+.inputGroup{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 3px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.inputGroup2{
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: auto 50px 80px;
+    margin-left: 3px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.inputGroupbtn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 80px 80px;
+    gap:10px;
+    margin-left: 3px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.inputGroupbtn button{
+    width: 80px;
+}
+
+#iconeDelete{
+    color: #ff4f4f;
+}
+#iconeEdit{
+    color: #4f5eff;
 }

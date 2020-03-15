@@ -23,6 +23,7 @@ class MilitarController {
     }
     async store(request, response){         //Cadastrar novo militar
         try{
+            console.log(request.body);
             const militar = await Militar.create(request.body);
             return response.json(militar);
         } catch (err) {
@@ -32,13 +33,13 @@ class MilitarController {
     async update(request, response){        //Atualizar regristro de Militar
         try{
             await Militar.updateMany(request.query, request.body);
+            return response.status(200).json({message: "Sucesso ao Atualizar registro!"});
         } catch (err) {
             return response.status(400).json({error: "Erro ao Atualizar Registro do Militar"});
         }
     }
     async destroy(request, response){       //Deletar registro específico, necessita de parametro id
         try{
-            //const militar = await Militar.find(request.query.idMilitar);
             const resultado = await Militar.deleteOne(request.query);
             return response.json(resultado);
         } catch (err) {

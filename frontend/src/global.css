@@ -11,5 +11,7 @@
 
 html, body, #root {
     background-image:url('./public/background.jpg');
-    margin-top: 50px;
+    margin: 0;
+    padding: 10px 20px;
+    overflow: hidden;
 }

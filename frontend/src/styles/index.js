@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export default createGlobalStyle`
   * {
-      margin: 10px;
+      margin:10px;
       padding: 0;
       box-sizing: border-box;
       outline: 0;
