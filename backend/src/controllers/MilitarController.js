@@ -33,7 +33,8 @@ class MilitarController {
     async update(request, response){        //Atualizar regristro de Militar
         try{
             await Militar.updateMany(request.query, request.body);
-            return response.status(200).json({message: "Sucesso ao Atualizar registro!"});
+            const militar = await Militar.find();
+            return response.json(militar);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Atualizar Registro do Militar"});
         }
@@ -41,7 +42,8 @@ class MilitarController {
     async destroy(request, response){       //Deletar registro específico, necessita de parametro id
         try{
             const resultado = await Militar.deleteOne(request.query);
-            return response.json(resultado);
+            const militar = await Militar.find();
+            return response.json(militar);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Deletar Registro do Militar"});
         }

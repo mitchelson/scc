@@ -4,11 +4,11 @@ import api from '../../services/api';
 import './styles.css';
 
 function Militar() {
-  
+
+  //Armazena a lista de militares em uma constante
   const [militar, setMilitar] = useState([]);
-  const [idDeleteMilitar, setIdDelete] = useState('');
 
-
+  //Dados do Militar, usados para cadastrar ou atualizar o registro de um militar
   const [idMilitar, setidMilitar] = useState('');
   const [nome, setNome] = useState('');
   const [nomeGuerra, setnomeGuerra] = useState('');
@@ -19,12 +19,21 @@ function Militar() {
   const [cursoMotorista, setcursoMotorista] = useState('');
   const [senha, setSenha] = useState('');
 
-  const [btnNome, setbtnNome] = useState('CADASTRAR');
-
+  //Função para Listar Militar
+  useEffect(() => {
+    async function listaMilitar(){    
+      const response = await api.get('/listar-militar');
+      setMilitar(response.data);
+    }
+    listaMilitar();
+  }, []);
+  
+  //Função para Cadastrar Militar
   async function addMilitar(e){
     e.preventDefault();
 
     const response = await api.post('/cadastrar-militar', {
+
       idMilitar,
       nome,
       nomeGuerra,
@@ -46,22 +55,22 @@ function Militar() {
     setSenha('');
 
     setMilitar([...militar, response.data]);
-  }
-  useEffect( () => {
-    async function listaMilitar(){
-      const response = await api.get('/listar-militar');
-      setMilitar(response.data);
-    }
-    listaMilitar();
-  }, []);
+  }   
 
-  async function deleteMilitar(e){
-    if(idDeleteMilitar !== ''){
-      console.log(idDeleteMilitar);
-      const response = await api.delete(`/deletar-militar?idMilitar=${idDeleteMilitar}`);
-    }
+  //Função para Deletar Militar
+  async function rmMilitar(id){
+    const deletado = await api.delete(`/deletar-militar?idMilitar=${id}`);
+    setMilitar(deletado.data);
   }
 
+  //Função para Editar/Atualizar Militar
+  async function editMilitar(id){
+    
+    const response = await api.get(`/pesquisar-militar?idMilitar=${id}`);
+    console.log(response.data);
+  }  
+
+  //O que mostra na tela do navegador  
   return (
     <div id="container">
       <h1>Militar</h1>
@@ -135,7 +144,7 @@ function Militar() {
               type="checkbox"/><p>Admin</p>
           </div>
 
-          <button id="btnPrincipal" type="submit">{btnNome}</button>
+          <button id="btnPrincipal" type="submit">SALVAR</button>
           <button>LIMPAR</button>
           <button>CANCELAR</button>
         </form>
@@ -155,10 +164,14 @@ function Militar() {
                 <tr key={militar._id}>
                   <td>{militar.idMilitar}</td>
                   <td>{militar.nome}</td>
-                  <td>Disponível</td>
+                  <td>---</td>
                   <td>
-                      <span id="iconeEdit"><FaEdit /></span>
-                      <span id="iconeDelete"><FaTrashAlt /></span>
+                    <span onClick={e => editMilitar(militar.idMilitar)} id="iconeEdit"><FaEdit /></span>
+                    <span onClick={() => {
+                      if (window.confirm('Deseja apagar esse Militar?')){
+                        rmMilitar(militar.idMilitar);
+                      }
+                    }} id="iconeDelete"><FaTrashAlt /></span>
                   </td>
                 </tr>
               ))}

@@ -46,7 +46,6 @@ form select{
     padding-top: 10px;
     width:90%;
     height:100%;
-    overflow: hidden;
     background:#dcdcdc;
 }
 
@@ -85,6 +84,9 @@ table th {
     height: 30px;
     background: gray;
     color:white;
+}
+table tbody {
+    overflow: hidden;
 }
 p{
     margin-top: 15px;
