@@ -21,10 +21,13 @@ class MilitarController {
             return response.status(400).json({error: "Erro ao Pesquisar Militar"});
         }
     }
-    async store(request, response){         //Cadastrar novo militar
+    async store(request, response){         //Cadastrar novo militars
         try{
-            console.log(request.body);
-            const militar = await Militar.create(request.body);
+            await Militar.findOneAndUpdate(
+                {idMilitar: request.body.idMilitar}, 
+                {$set:request.body}, 
+                {upsert: true});
+            const militar = await Militar.find();
             return response.json(militar);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Cadastrar Militar"});

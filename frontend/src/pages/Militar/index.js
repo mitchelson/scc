@@ -5,10 +5,11 @@ import './styles.css';
 
 function Militar() {
 
-  //Armazena a lista de militares em uma constante
+  //Armazena a lista de militares na constante militar
   const [militar, setMilitar] = useState([]);
 
-  //Dados do Militar, usados para cadastrar ou atualizar o registro de um militar
+  //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
+  const [inputIdMilitar, setInputId] = useState(true);
   const [idMilitar, setidMilitar] = useState('');
   const [nome, setNome] = useState('');
   const [nomeGuerra, setnomeGuerra] = useState('');
@@ -19,7 +20,7 @@ function Militar() {
   const [cursoMotorista, setcursoMotorista] = useState('');
   const [senha, setSenha] = useState('');
 
-  //Função para Listar Militar
+  //Função para Listar Militar              - OK
   useEffect(() => {
     async function listaMilitar(){    
       const response = await api.get('/listar-militar');
@@ -28,12 +29,10 @@ function Militar() {
     listaMilitar();
   }, []);
   
-  //Função para Cadastrar Militar
+  //Função para Cadastrar/Atualizar Militar - OK
   async function addMilitar(e){
     e.preventDefault();
-
     const response = await api.post('/cadastrar-militar', {
-
       idMilitar,
       nome,
       nomeGuerra,
@@ -53,22 +52,16 @@ function Militar() {
     setAdmin(false);
     setcursoMotorista('');
     setSenha('');
+    setInputId(true);
 
-    setMilitar([...militar, response.data]);
+    setMilitar(response.data);
   }   
 
-  //Função para Deletar Militar
+  //Função para Deletar Militar             - OK
   async function rmMilitar(id){
     const deletado = await api.delete(`/deletar-militar?idMilitar=${id}`);
     setMilitar(deletado.data);
   }
-
-  //Função para Editar/Atualizar Militar
-  async function editMilitar(id){
-    
-    const response = await api.get(`/pesquisar-militar?idMilitar=${id}`);
-    console.log(response.data);
-  }  
 
   //O que mostra na tela do navegador  
   return (
@@ -82,6 +75,7 @@ function Militar() {
               id="idMilitar"
               name="idMilitar"
               value={idMilitar}
+              disabled={!inputIdMilitar}
               onChange={e => setidMilitar(e.target.value)}
               placeholder="Identidade Militar"
             />
@@ -143,10 +137,8 @@ function Militar() {
               onChange={e => setAdmin(e.target.checked)}
               type="checkbox"/><p>Admin</p>
           </div>
-
           <button id="btnPrincipal" type="submit">SALVAR</button>
           <button>LIMPAR</button>
-          <button>CANCELAR</button>
         </form>
         <div id="registros">
           <strong>REGISTROS</strong>
@@ -160,16 +152,28 @@ function Militar() {
               </tr>
             </thead> 
             <tbody>
-              {militar.map(militar => (
-                <tr key={militar._id}>
-                  <td>{militar.idMilitar}</td>
-                  <td>{militar.nome}</td>
+              {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
+                <tr key={ml._id}>
+                  <td>{ml.idMilitar}</td>
+                  <td>{ml.nome}</td>
                   <td>---</td>
                   <td>
-                    <span onClick={e => editMilitar(militar.idMilitar)} id="iconeEdit"><FaEdit /></span>
-                    <span onClick={() => {
+                    <span onClick={() => {  //Botão para editar Militar
+                      setidMilitar(ml.idMilitar);
+                      setInputId(false);
+                      setNome(ml.nome);
+                      setnomeGuerra(ml.nomeGuerra);
+                      setdataNascimento(ml.dataNascimento);
+                      setPelotao(ml.pelotao);
+                      seteMotorista(ml.eMotorista);
+                      setAdmin(ml.admin);
+                      setcursoMotorista(ml.cursoMotorista);
+                      setSenha(ml.senha);
+                      
+                    }} id="iconeEdit"><FaEdit /></span>
+                    <span onClick={() => {  //Botão para deletar Formulário
                       if (window.confirm('Deseja apagar esse Militar?')){
-                        rmMilitar(militar.idMilitar);
+                        rmMilitar(ml.idMilitar);
                       }
                     }} id="iconeDelete"><FaTrashAlt /></span>
                   </td>

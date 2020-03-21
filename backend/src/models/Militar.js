@@ -19,7 +19,7 @@ const MilitarSchema = new mongoose.Schema({
         //require: true,
     },
     dataNascimento: {           //Indica data de nascimento do militar
-        type: Date,
+        type: Number,
         //require: true
     },
     admin :{                    //Indica se o militar é administrador
