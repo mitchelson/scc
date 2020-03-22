@@ -1,5 +1,7 @@
-const Militar = require('../models/Militar');
 const axios = require('axios');
+const Militar = require('../models/Militar');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 class MilitarController {
     async index(request, response){         //Listar todos os militares sem nenhum parametro
@@ -50,7 +52,7 @@ class MilitarController {
         } catch (err) {
             return response.status(400).json({error: "Erro ao Deletar Registro do Militar"});
         }
-    }
+    } 
 }
 
 module.exports = new MilitarController();

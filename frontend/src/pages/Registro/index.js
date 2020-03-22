@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import React, { useState, } from 'react';
 import api from '../../services/api';
-import InputMask from 'react-input-mask';
 import './styles.css';
 
-function Militar() {
-
-  //Armazena a lista de militares na constante militar
-  const [militar, setMilitar] = useState([]);
+function Registro() {
 
   //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
   const [inputIdMilitar, setInputId] = useState(true);
@@ -21,15 +16,6 @@ function Militar() {
   const [cursoMotorista, setcursoMotorista] = useState('');
   const [senha, setSenha] = useState('');
 
-  //Função para Listar Militar              - OK
-  useEffect(() => {
-    async function listaMilitar(){    
-      const response = await api.get('/listar-militar');
-      setMilitar(response.data);
-    }
-    listaMilitar();
-  }, []);
-  
   //Função para Cadastrar/Atualizar Militar - OK
   async function addMilitar(e){
     e.preventDefault();
@@ -54,15 +40,7 @@ function Militar() {
     setcursoMotorista('');
     setSenha('');
     setInputId(true);
-
-    setMilitar(response.data);
   }   
-
-  //Função para Deletar Militar             - OK
-  async function rmMilitar(id){
-    const deletado = await api.delete(`/deletar-militar?idMilitar=${id}`);
-    setMilitar(deletado.data);
-  }
 
   //O que mostra na tela do navegador  
   return (
@@ -95,7 +73,7 @@ function Militar() {
             onChange={e => setNome(e.target.value)}
             placeholder="Nome Completo"
           />
-          <InputMask 
+          <input 
               id="dataNascimento"
               name="dataNascimento"
               value={dataNascimento}
@@ -141,51 +119,9 @@ function Militar() {
           <button id="btnPrincipal" type="submit">SALVAR</button>
           <button>LIMPAR</button>
         </form>
-        <div id="registros">
-          <strong>REGISTROS</strong>
-          <table>
-            <thead> 
-              <tr>
-                <th>IDENTIDADE</th>
-                <th>NOME</th>
-                <th>STATUS</th>
-                <th>AÇÕES</th>
-              </tr>
-            </thead> 
-            <tbody>
-              {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
-                <tr key={ml._id}>
-                  <td>{ml.idMilitar}</td>
-                  <td>{ml.nome}</td>
-                  <td>---</td>
-                  <td>
-                    <span onClick={() => {  //Botão para editar Militar
-                      setidMilitar(ml.idMilitar);
-                      setInputId(false);
-                      setNome(ml.nome);
-                      setnomeGuerra(ml.nomeGuerra);
-                      setdataNascimento(ml.dataNascimento);
-                      setPelotao(ml.pelotao);
-                      seteMotorista(ml.eMotorista);
-                      setAdmin(ml.admin);
-                      setcursoMotorista(ml.cursoMotorista);
-                      setSenha(ml.senha);
-                      
-                    }} id="iconeEdit"><FaEdit /></span>
-                    <span onClick={() => {  //Botão para deletar Formulário
-                      if (window.confirm('Deseja apagar esse Militar?')){
-                        rmMilitar(ml.idMilitar);
-                      }
-                    }} id="iconeDelete"><FaTrashAlt /></span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   );
 }
 
-export default Militar;
+export default Registro;
