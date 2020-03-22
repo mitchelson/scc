@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import api from '../../services/api';
 import InputMask from 'react-input-mask';
-import './styles.css';
+import '../Militar/styles.css';
 
 function Militar() {
 
@@ -96,6 +96,7 @@ function Militar() {
             placeholder="Nome Completo"
           />
           <InputMask 
+              mask="99/99/9999"
               id="dataNascimento"
               name="dataNascimento"
               value={dataNascimento}
