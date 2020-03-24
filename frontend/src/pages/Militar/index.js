@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import api from '../../services/api';
 import InputMask from 'react-input-mask';
-import '../Militar/styles.css';
+import './styles.css';
 
 function Militar() {
 
@@ -76,9 +76,10 @@ function Militar() {
               id="idMilitar"
               name="idMilitar"
               value={idMilitar}
+              required
               disabled={!inputIdMilitar}
               onChange={e => setidMilitar(e.target.value)}
-              placeholder="Identidade Militar"
+              placeholder="Identidade"
             />
             <input 
               id="nomeGuerra"

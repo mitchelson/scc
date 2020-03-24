@@ -101,16 +101,6 @@ p{
     vertical-align: middle;
 }
 
-.inputGroup2{
-    margin-top: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: auto 50px 80px;
-    margin-left: 3px;
-    margin-bottom: 0px;
-    vertical-align: middle;
-}
-
 .inputGroupbtn{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -124,7 +114,6 @@ p{
 .inputGroupbtn button{
     width: 80px;
 }
-
 #iconeDelete{
     color: #ff4f4f;
 }

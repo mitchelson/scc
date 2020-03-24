@@ -7,13 +7,11 @@ const routes = Router();
 routes.get('/listar-militar', MilitarController.index);
 routes.get('/pesquisar-militar', MilitarController.show);
 routes.post('/cadastrar-militar', MilitarController.store);
-routes.put('/atualizar-militar', MilitarController.update);
 routes.delete('/deletar-militar', MilitarController.destroy);
 
 routes.get('/listar-viatura', ViaturaController.index);
 routes.get('/pesquisar-viatura', ViaturaController.show);
 routes.post('/cadastrar-viatura', ViaturaController.store);
-routes.put('/atualizar-viatura', ViaturaController.update);
 routes.delete('/deletar-viatura', ViaturaController.destroy);
 
 module.exports = routes;

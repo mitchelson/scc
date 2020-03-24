@@ -1,5 +1,4 @@
 const Viatura = require('../models/Viatura');
-const axios = require('axios');
 
 class ViaturaController {
     async index(request, response){         //Listar todos os viaturaes sem nenhum parametro
@@ -21,26 +20,25 @@ class ViaturaController {
             return response.status(400).json({error: "Erro ao Pesquisar Viatura"});
         }
     }
-    async store(request, response){         //Cadastrar novo viatura
+    async store(request, response){   
+        console.log(request.body.idViatura
+            )     //Cadastrar/Editar nova viatura
         try{
-            const viatura = await Viatura.create(request.body);
+            await Viatura.findOneAndUpdate(
+                {idViatura: request.body.idViatura}, 
+                {$set:request.body}, 
+                {upsert: true});
+            const viatura = await Viatura.find();
             return response.json(viatura);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Cadastrar Viatura"});
         }
     }
-    async update(request, response){        //Atualizar regristro de Viatura
-        try{
-            await Viatura.updateMany(request.query, request.body);
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Atualizar Registro do Viatura"});
-        }
-    }
     async destroy(request, response){       //Deletar registro específico, necessita de parametro id
         try{
-            //const viatura = await Viatura.find(request.query.idViatura);
             const resultado = await Viatura.deleteOne(request.query);
-            return response.json(resultado);
+            const viatura = await Viatura.find();
+            return response.json(viatura);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Deletar Registro do Viatura"});
         }

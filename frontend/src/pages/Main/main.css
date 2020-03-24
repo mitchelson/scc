@@ -1,31 +1,35 @@
-#container {
+#mainContainer {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;  
 }
-#container strong{
+#mainContainer strong{
     color:#000;
     text-align: center;
     font-size: 17px;
 }
-#box{
-    display: grid;
-    width: 100%;
+#mainBox{
+    /**display: none;*/
+    position: absolute;
+    width: 75%;
+    top: 80px;
     height:100%;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: 310px 700px;
-    gap:20px;
     text-align: center;
 }
 
-form{
+.form{
+    position: absolute;
+    display: none;
+    border:2px solid black;
+    z-index: 5;
     padding-top: 10px;
-    width:100%;
-    height:100%;
+    width:300px;
+    z-index: 5;
+    height:450px;
     background:#dcdcdc;
 }
 form input{
@@ -42,10 +46,11 @@ form select{
     border:0;
     padding-left: 5px;
 }
-#registros{
-    padding-top: 10px;
-    width:90%;
-    height:100%;
+#mainRegistros{
+    z-index: 1;
+    padding-top: 5px;
+    width:95%;
+    height:450px;
     background:#dcdcdc;
 }
 
@@ -77,15 +82,16 @@ button:hover{
 button:active{
     background-image: linear-gradient(to bottom right, #ff6e6e, #ffabab);
 }
-table{
+#tableMain{
     width: 97%;
 }
-table th {
+#tableMain th {
     height: 30px;
     background: gray;
     color:white;
 }
-table tbody {
+
+#tableMain tbody {
     overflow: hidden;
 }
 p{

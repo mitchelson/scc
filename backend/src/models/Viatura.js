@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
 
 const ViaturaSchema = new mongoose.Schema({
     idViatura: {               //Indica Id único no sistema para cada viatura
         type: Number,
-        //require: true,
+        require: true,
     },
     nome: {                     //Indica o nome da viatura
         type: String,
-        required:true,
+        //required:true,
     },
     tipo: {                     //Indica o tipo da viatura
         type: String,
         //required:true,
     },
     dataChegada: {              //Indica a data de chegada da viatura
-        type: Date,
+        type: Number,
         //require: true
     },
     motoristaPrincipal :{       //Indica o motorista principal da viatura
