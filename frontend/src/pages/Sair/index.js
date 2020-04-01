@@ -1,16 +1,25 @@
 import React from 'react';
-
-import { Container, Title, Box } from './styles';
+import './sair.css';
+import { useHistory } from 'react-router-dom';
 
 function Sair() {
+  
+  const history = useHistory();
+
+  async function sair(){
+    localStorage.setItem('auth', false);
+    history.push('/');
+  }   
+  async function cancelar(){
+    history.push('/');
+  }  
+
+  //O que mostra na tela do navegador  
   return (
-    <Container>
-      <Title>Sair</Title>
-      <Box>
-        Você tem certeza que deseja sair?
-        <button>Sair</button><button>Cancelar</button>
-      </Box>
-    </Container>
+    <div id="mainContainer">
+          <button id="btnPrincipal" type="submit" onClick={sair}>SAIR</button>
+          <button id="btnCancelar" onClick={cancelar}>CANCELAR</button>
+    </div>
   );
 }
 

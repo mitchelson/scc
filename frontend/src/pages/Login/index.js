@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import api from '../../services/api';
 import './styles.css';
-import App from '../../App'
+import { useHistory } from 'react-router-dom';
 
 function Login() {
 
-  //Armazena a lista de militares na constante militar
-  const [militar, setMilitar] = useState([]);
   //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
   const [idMilitar, setidMilitar] = useState('');
   const [senha, setSenha] = useState('');
-
+  const history = useHistory();
   //Função  de login
-  async function login(){
+  async function handleLogin(e){
+    e.preventDefault();
+    const login = await api.get('/login', {
+      idMilitar,
+      senha
+    });
+    console.log(login);
+    //localStorage.setItem('auth', false);
+    //alert("ID ou Senha incorretos");
     
   }
 
@@ -26,7 +32,7 @@ function Login() {
   return (
     <div id="login">
       <div id="boxL">
-        <form onSubmit={login}>   
+        <form onSubmit={handleLogin}>   
         <h1>LOGIN</h1>
             <input 
               id="idMilitar"
@@ -42,7 +48,7 @@ function Login() {
               onChange={e => setSenha(e.target.value)}
               placeholder="Senha" 
               type="password"/>
-          <button id="btnPrincipal" type="submit">ENTRAR</button>
+          <button id="btnEntrar" type="submit">ENTRAR</button>
         </form>
         <button onClick={limpar}>LIMPAR</button>
       </div>

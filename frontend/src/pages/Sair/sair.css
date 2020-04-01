@@ -1,0 +1,139 @@
+#mainContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;  
+}
+#mainContainer strong{
+  color:#000;
+  text-align: center;
+  font-size: 17px;
+}
+#mainBox{
+  /**display: none;*/
+  position: absolute;
+  width: 75%;
+  top: 80px;
+  height:100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form{
+  position: absolute;
+  display: none;
+  border:2px solid black;
+  z-index: 5;
+  padding-top: 10px;
+  width:300px;
+  z-index: 5;
+  height:450px;
+  background:#dcdcdc;
+}
+form input{
+  font-size: 16px;
+  width: 92%;
+  height: 30px;
+  border:0;
+  padding-left: 5px;
+}
+form select{
+  font-size: 16px;
+  width: 92%;
+  height: 30px;
+  border:0;
+  padding-left: 5px;
+}
+#mainRegistros{
+  z-index: 1;
+  padding-top: 5px;
+  width:95%;
+  height:450px;
+  background:#dcdcdc;
+}
+
+#btnPrincipal{
+  width: 260px !important;
+  height: 30px;
+  color: #fff;
+  border:0;
+  font-size: 16px;
+  background-image: linear-gradient(to bottom right, green, #00ad10);
+}
+#btnPrincipal:hover{
+  color: #fff;
+  background-image: linear-gradient(to bottom right, #004f07, #00ad10);
+}
+#btnPrincipal:active{
+  color: #ddd;
+  background-image: linear-gradient(to bottom right, #3b3b3b, #004f07);
+}
+button{
+  width: 100px;
+  height: 30px;
+  border:0;
+  background-image: linear-gradient(to bottom right, #fff, #fff);
+}
+button:hover{
+  background-image: linear-gradient(to bottom right, #ffc2c2, #fff);
+}
+button:active{
+  background-image: linear-gradient(to bottom right, #ff6e6e, #ffabab);
+}
+#tableMain{
+  width: 97%;
+}
+#tableMain th {
+  height: 30px;
+  background: gray;
+  color:white;
+}
+
+#tableMain tbody {
+  overflow: hidden;
+}
+p{
+  margin-top: 15px;
+}
+
+
+.inputGroup{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 3px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+.inputGroup2{
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto 50px 80px;
+  margin-left: 3px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+.inputGroupbtn{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 80px 80px;
+  gap:10px;
+  margin-left: 3px;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+.inputGroupbtn button{
+  width: 80px;
+}
+
+#iconeDelete{
+  color: #ff4f4f;
+}
+#iconeEdit{
+  color: #4f5eff;
+}
