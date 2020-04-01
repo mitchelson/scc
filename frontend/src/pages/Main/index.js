@@ -146,10 +146,14 @@ function Main() {
           <table id="tableMain">
             <thead> 
               <tr>
-                <th>IDENTIDADE</th>
-                <th>NOME</th>
-                <th>STATUS</th>
-                <th>AÇÕES</th>
+                <th>ID</th>
+                <th>VIATURA</th>
+                <th>ID VIATURA</th>
+                <th>DESTINO</th>
+                <th>USUÁRIO</th>
+                <th>CHEFE VIATURA</th>
+                <th>QTD COMBUSTIVEL</th>
+                <th>DATA</th>
               </tr>
             </thead> 
             <tbody>

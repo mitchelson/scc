@@ -12,12 +12,12 @@ import './global.css';
 function App() {
   return (
         <>
-        <div hidden={localStorage.getItem('auth')}>
+        <div hidden={true}>
           <BrowserRouter>
             <Login />
           </BrowserRouter>
         </div>
-        <div hidden={!localStorage.getItem('auth')}>
+        <div hidden={false}>
         <BrowserRouter>
           <GlobalStyle />
           <Container>

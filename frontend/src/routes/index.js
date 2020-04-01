@@ -10,7 +10,7 @@ import Sair from '../pages/Sair';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Main} />
+      <Route  path="/" exact component={Main} />
       <Route path="/militar" exact component={Militar} />
       <Route path="/viaturas" exact component={Viaturas} />
       <Route path="/relatorios" exact component={Relatorios} />

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 
-const MilitarSchema = new mongoose.Schema({
+const MovimentoSchema = new mongoose.Schema({
     idMilitar: {               //Indica Id único no sistema para cada militar
         type: Number,
-        require: true,
+        //require: true,
     },
     nome: {                     //Indica o nome do militar
         type: String,
@@ -33,17 +33,7 @@ const MilitarSchema = new mongoose.Schema({
     pelotao : {                 //Indica o pelotao que o militar pertence
         type: String,
         //require: true
-    },
-    senha: {                    //Senha de acesso do militar para o sistema
-        type: String,
-        select: false,
-        require: true,
-        set: value => 
-            crypto                      //Criptografia de senha
-                .createHash('md5')
-                .update(value)
-                .digest('hex'),
     }
 });
 
-module.exports = mongoose.model('Militar', MilitarSchema);
+module.exports = mongoose.model('Movimento', MovimentoSchema);
