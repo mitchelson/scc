@@ -1,19 +1,20 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
-import Routes from './routes';
-
-import Sidebar from './components/Sidebar';
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute';
 import GlobalStyle, { Container } from './styles/index';
+
 import './global.css';
+import Routes from './routes';
 
 const App = () => (
     <BrowserRouter>
-        <GlobalStyle />
-        <Container>
-            <Sidebar />
-            <Routes />
-        </Container>
+    <GlobalStyle />
+        <Switch>
+            <Route exact path="/" component={Login}/>
+            <PrivateRoute path="/" component={Routes}/>
+        </Switch>
     </BrowserRouter>
 );
 

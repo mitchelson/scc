@@ -22,7 +22,7 @@ function Login() {
     if(!login){
       history.push('/');
     }else {
-      localStorage.setItem('auth', true);
+      localStorage.setItem('auth', false);
       history.push('/main');
     }
     console.log(login);
