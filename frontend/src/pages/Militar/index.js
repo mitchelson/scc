@@ -67,7 +67,7 @@ function Militar() {
   //O que mostra na tela do navegador  
   return (
     <div id="container">
-      <h1>Militar</h1>
+      <h1>MILITAR</h1>
       <div id="box">
         <form onSubmit={addMilitar}>   
           <strong>FORMULÁRIO</strong>

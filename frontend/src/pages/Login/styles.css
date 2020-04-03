@@ -1,11 +1,21 @@
+.passGroup{
+  height: 40px;
+  display: grid;
+  grid-template-columns: 270px 50px !important;
+  gap: 0px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  margin-bottom: 15px !important;
+}
 #login {
-  height: 500px;
+  height: 450px;
   position: relative;
 }
 #login strong{
-  color:#000;
+  color:#595959;
   text-align: center;
-  font-size: 17px;
+  font-size: 27px;
+  margin-bottom: 10px;
 }
 #boxL{
   margin: 0;
@@ -16,52 +26,74 @@
   transform: translate(-50%, -50%);
   width: 350px;
   text-align: center;
-  background:#dcdcdc;
-  
+  background:#ededed;
+  border-radius: 8px;
 }
 
-form{
-  padding-top: 10px;
+.formLogin{
+  padding: 0px 0;
   width: 95%;
   height:100%;
+  background:#ededed;
 }
-form input{
+.formLogin input{
+  border-radius: 5px;
+  margin-top: 30px;
   font-size: 16px;
-  width: 92%;
-  height: 30px;
+  width: 93%;
+  height: 40px;
   border:0;
   padding-left: 5px;
 }
-form select{
-  font-size: 16px;
-  width: 92%;
-  height: 30px;
-  border:0;
-  padding-left: 5px;
+.inputSenha{
+  margin-top: 10px !important;
+  margin-right: 0px !important;
+  width: 260px !important;
+  border-radius: 5px 0 0 5px !important;
+}
+.showSenha{
+  border-radius: 0 5px 5px 0!important;
+  margin-left: 0px !important;
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  color: darkgray;
+  margin-top: 10px;
+  transition: 0.5s;
+}
+.showSenha:hover{
+  background-image: linear-gradient(to bottom right, #dcdcdc, #ebebeb);
+}
+.formLogin i{
+  margin-top: 0px;
+  color: red;
+  font-size: 14px;
 }
 
-#btnEntrar{
+.btnEntrar{
   width: 310px;
-  height: 30px;
+  height: 40px;
   color: #fff;
+  border-radius: 5px;
   border:0;
   font-size: 16px;
   background-image: linear-gradient(to bottom right, green, #00ad10);
 }
-#btnPrincipal:hover{
+button{
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.btnEntrar:hover{
   color: #fff;
   background-image: linear-gradient(to bottom right, #004f07, #00ad10);
 }
-#btnPrincipal:active{
+.btnEntrar:active{
   color: #ddd;
   background-image: linear-gradient(to bottom right, #3b3b3b, #004f07);
 }
-button{
-  width: 100px;
-  height: 30px;
-  border:0;
-  background-image: linear-gradient(to bottom right, #fff, #fff);
-}
+
 button:hover{
   background-image: linear-gradient(to bottom right, #ffc2c2, #fff);
 }

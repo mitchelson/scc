@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-content:center;
   align-items:center;
   background:#fff;
+  border-radius:5px;
 `;
 
 export default createGlobalStyle`
