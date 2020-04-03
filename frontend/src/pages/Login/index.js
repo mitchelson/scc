@@ -12,12 +12,20 @@ function Login() {
   //Função  de login
   async function handleLogin(e){
     e.preventDefault();
+
     const login = await api.get('/login', {
-      idMilitar,
-      senha
+      params: {
+        idMilitar: idMilitar,
+        senha: senha,
+      }
     });
+    if(!login){
+      history.push('/');
+    }else {
+      localStorage.setItem('auth', false);
+      history.push('/main');
+    }
     console.log(login);
-    //localStorage.setItem('auth', false);
     //alert("ID ou Senha incorretos");
     
   }

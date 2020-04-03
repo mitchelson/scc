@@ -7,11 +7,11 @@ function Sair() {
   const history = useHistory();
 
   async function sair(){
-    localStorage.setItem('auth', false);
-    history.push('/');
+    localStorage.clear();
+    window.location.href = '/login'
   }   
   async function cancelar(){
-    history.push('/');
+    history.push('/main');
   }  
 
   //O que mostra na tela do navegador  

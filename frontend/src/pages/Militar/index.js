@@ -63,7 +63,7 @@ function Militar() {
     const deletado = await api.delete(`/deletar-militar?idMilitar=${id}`);
     setMilitar(deletado.data);
   }
-
+  
   //O que mostra na tela do navegador  
   return (
     <div id="container">
@@ -172,7 +172,6 @@ function Militar() {
                       setAdmin(ml.admin);
                       setcursoMotorista(ml.cursoMotorista);
                       setSenha(ml.senha);
-                      
                     }} id="iconeEdit"><FaEdit /></span>
                     <span onClick={() => {  //Botão para deletar Formulário
                       if (window.confirm('Deseja apagar esse Militar?')){
