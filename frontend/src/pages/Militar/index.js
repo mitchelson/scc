@@ -145,15 +145,15 @@ function Militar() {
         </form>
         <div id="registros">
           <strong>REGISTROS</strong>
-          <table>
+          <table className="table">
             <thead> 
               <tr>
-                <th>IDENTIDADE</th>
-                <th>NOME</th>
-                <th>STATUS</th>
-                <th>AÇÕES</th>
+                <th scope="col">IDENTIDADE</th>
+                <th scope="col">NOME</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">AÇÕES</th>
               </tr>
-            </thead> 
+            </thead>
             <tbody>
               {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
                 <tr key={ml._id}>

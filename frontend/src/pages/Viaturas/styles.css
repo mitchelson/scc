@@ -47,6 +47,7 @@ form select{
     width:90%;
     height:100%;
     background:#dcdcdc;
+    overflow: auto;
 }
 
 #btnPrincipal{
@@ -80,13 +81,12 @@ button:active{
 table{
     width: 97%;
 }
-table th {
-    height: 30px;
-    background: gray;
-    color:white;
-}
-table tbody {
+tbody{
+    max-height: 450px;
     overflow: hidden;
+}
+p{
+    margin-top: 15px;
 }
 p{
     margin-top: 15px;

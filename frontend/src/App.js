@@ -10,14 +10,15 @@ import './App.css';
 import './global.css';
 
 function App() {
+  
   return (
         <>
-        <div hidden={true}>
+        <div hidden={false}>
           <BrowserRouter>
             <Login />
           </BrowserRouter>
         </div>
-        <div hidden={false}>
+        <div hidden={true}>
         <BrowserRouter>
           <GlobalStyle />
           <Container>

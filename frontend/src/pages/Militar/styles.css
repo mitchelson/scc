@@ -46,7 +46,8 @@ form select{
 #registros{
     padding-top: 10px;
     width:90%;
-    height:100%;
+    height:450px;
+    overflow:auto;
     max-height: 450px;
     background:#dcdcdc;
 }
@@ -79,16 +80,17 @@ button:hover{
 button:active{
     background-image: linear-gradient(to bottom right, #ff6e6e, #ffabab);
 }
+
 table{
     width: 97%;
 }
-th {
-    height: 30px;
-    background: gray;
-    color:white;
+thead{
+    background-color: darkgray;
+    color:#fff
 }
-tbody {
-   
+tbody{
+    max-height: 450px;
+    overflow: hidden;
 }
 p{
     margin-top: 15px;
