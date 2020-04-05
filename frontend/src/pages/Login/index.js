@@ -4,6 +4,7 @@ import { FaEye } from 'react-icons/fa';
 import './styles.css';
 import { useHistory } from 'react-router-dom';
 
+
 function Login() {
   
   //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
@@ -12,9 +13,11 @@ function Login() {
   const history = useHistory();
   const [erro, setErro] = useState(0);
   const [toglePass, setTogle] = useState('password');
+  const [desabilitaCampo, setCampo] = useState(false);
   //Função  de login
   async function handleLogin(e){
     e.preventDefault();
+    setCampo(true);
     try {
       await api.get('/login', {
         params: {
@@ -25,9 +28,12 @@ function Login() {
       localStorage.setItem('auth', false);
       history.push('/main');
     } catch (error) {
-      history.push('/');
-      setErro(100);
-    }    
+      setTimeout(function(){ 
+        setCampo(false);
+        history.push('/');
+        setErro(100);
+        limpar(e);}, 700);
+    }   
   }
   async function showSenha(e){
     e.preventDefault();
@@ -43,7 +49,6 @@ function Login() {
     e.preventDefault();
     setidMilitar('');
     setSenha('');
-    setErro(0)
   }
   //O que mostra na tela do navegador  
   return (
@@ -56,6 +61,7 @@ function Login() {
               name="idMilitar"
               value={idMilitar}
               required
+              disabled={desabilitaCampo}
               onChange={e => setidMilitar(e.target.value)}
               placeholder="Identidade Militar"
             />
@@ -65,16 +71,16 @@ function Login() {
                 name="senha"
                 value={senha}
                 required
+                disabled={desabilitaCampo}
                 onChange={e => setSenha(e.target.value)}
                 placeholder="Senha" 
                 type={toglePass} 
               />
-              <button className="showSenha" onClick={showSenha}><FaEye/></button>
-              </div>
-              <i style={{opacity:erro}}>*identidade do militar ou senha incorreta</i>
+              <div className="showSenha" onMouseDown={showSenha} onMouseUp={showSenha}><FaEye/></div>
+            </div>
+            <i style={{opacity:erro}}>*revise seus dados</i>
           <button className="btnEntrar" type="submit">ENTRAR</button>
         </form>
-        <button onClick={limpar}>LIMPAR</button>
       </div>
     </div>
   );

@@ -29,6 +29,10 @@ export const SidebarLink = styled(NavLink)`
     color: #fff;
     transition-duration:300ms;
     background:#2b2b2b;
+  };
+  &:focus{
+    background:#000;
+    color:#fff;
   }
 `;
 export const Logout = styled(NavLink)`

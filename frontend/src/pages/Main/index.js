@@ -146,14 +146,15 @@ function Main() {
           <table id="tableMain">
             <thead> 
               <tr>
-                <th>ID</th>
-                <th>VIATURA</th>
-                <th>ID VIATURA</th>
-                <th>DESTINO</th>
-                <th>USUÁRIO</th>
-                <th>CHEFE VIATURA</th>
-                <th>QTD COMBUSTIVEL</th>
-                <th>DATA</th>
+                <th>DATA/HORARIO SAIDA</th>
+                <th>DATA/HORARIO CHEGADA</th>
+                <th>ODOMETRO SAIDA</th>
+                <th>ODOMETRO CHEGADA</th>
+                <th>USUÁRIO REGISTRO</th>
+                <th>MOTORISTA (CLASSE)</th>
+                <th>CHEFE VIATURA (CLASSE)</th>
+                <th>QTD COMBUSTIVEL (CLASSE)</th>
+                <th>DESTINO (Selecionar: Pleno, Meio tanque ou Cheio)</th>
               </tr>
             </thead> 
             <tbody>
