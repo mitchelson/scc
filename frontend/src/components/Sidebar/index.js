@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Container, SidebarLink, Logout } from './styles';
 
 function Sidebar() {

@@ -7,23 +7,23 @@ const ViaturaSchema = new mongoose.Schema({
     },
     nome: {                     //Indica o nome da viatura
         type: String,
-        //required:true,
+        required:true,
     },
     tipo: {                     //Indica o tipo da viatura
         type: String,
-        //required:true,
+        required:true,
     },
     dataChegada: {              //Indica a data de chegada da viatura
         type: Number,
-        //require: true
+        require: true
     },
     motoristaPrincipal :{       //Indica o motorista principal da viatura
         type: Number,
-        //required: true,
+        required: true,
     },
     motoristaAuxiliar :{        //Indica o motorista auxiliar da viatura
         type: Number,
-        //required: true,
+        required: true,
     },
     disponivel :{               //Indica se a viatura está disponível ou não
         type: Boolean,
@@ -31,7 +31,7 @@ const ViaturaSchema = new mongoose.Schema({
     },
     categoria :{                //Indica a categoria da viatura
         type: String,
-        //required: true,
+        required: true,
     }
 });
 

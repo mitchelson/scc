@@ -141,20 +141,19 @@ function Main() {
           <button>LIMPAR</button>
         </form>
       <div id="mainBox">
-      <h1>REGISTROS</h1>
+      <h1>MOVIMENTAÇÃO DE VIATURAS - SAÍDA</h1>
        <div id="mainRegistros">
           <table id="tableMain">
             <thead> 
               <tr>
-                <th>DATA/HORARIO SAIDA</th>
-                <th>DATA/HORARIO CHEGADA</th>
-                <th>ODOMETRO SAIDA</th>
-                <th>ODOMETRO CHEGADA</th>
-                <th>USUÁRIO REGISTRO</th>
+                <th>DATA</th>
+                <th>HORARIO</th>
+                <th>ODOMETRO</th>
                 <th>MOTORISTA (CLASSE)</th>
                 <th>CHEFE VIATURA (CLASSE)</th>
-                <th>QTD COMBUSTIVEL (CLASSE)</th>
-                <th>DESTINO (Selecionar: Pleno, Meio tanque ou Cheio)</th>
+                <th>DESTINO</th>
+                <th>QTD COMBUSTIVEL   (Selecionar: Pleno, Meio tanque ou Cheio)</th>
+                <th>USUÁRIO (CLASSE)</th>
               </tr>
             </thead> 
             <tbody>

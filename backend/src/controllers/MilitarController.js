@@ -11,17 +11,16 @@ class MilitarController {
     }
     async show(request, response){          //Pesquisar militar especifico passando id do militar como parametro
         try{
-            const find = request.query.idMilitar;
-            const militar = await Militar.find({
-                idMilitar: find
+            const militarDelete = request.query.idMilitar;
+            const response = await Militar.find({
+                idMilitar: militarDelete
             });
-            return response.json(militar);
+            return response.json(response);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Pesquisar Militar"});
         }
     }
     async store(request, response){         //Cadastrar/Editar militar
-        
         try{
             await Militar.findOneAndUpdate(
                 {idMilitar: request.body.idMilitar}, 
@@ -35,7 +34,7 @@ class MilitarController {
     }
     async destroy(request, response){       //Deletar registro específico, necessita de parametro id
         try{
-            const resultado = await Militar.deleteOne(request.query);
+            await Militar.deleteOne(request.query);
             const militar = await Militar.find();
             return response.json(militar);
         } catch (err) {

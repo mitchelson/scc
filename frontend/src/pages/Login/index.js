@@ -19,12 +19,13 @@ function Login() {
     e.preventDefault();
     setCampo(true);
     try {
-      await api.get('/login', {
+      const user = await api.get('/login', {
         params: {
           idMilitar: idMilitar,
           senha: senha,
         }
       });
+      localStorage.setItem('user', user.data.nome);
       localStorage.setItem('auth', false);
       history.push('/main');
     } catch (error) {

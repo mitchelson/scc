@@ -1,5 +1,4 @@
 const Militar = require('../models/Militar');
-const crypto = require('crypto');
 
 module.exports = {
     async index(request, response) {     
@@ -7,11 +6,6 @@ module.exports = {
         try{
             const militar = await Militar.findOne({idMilitar: idMilitar, senha: senha});
             console.log(militar);
-            //console.log(reques.body);
-            //console.log(request.body.idMilitar+" - "+request.body.senha);
-            //const militar = await Militar.findOne({idMilitar:request.body.idMilitar, senha:request.body.senha});
-            //console.log(militar)
-
             if(!militar){
                 return response.status(400).json({error: "Nenhum usuário encontrado"});
             }

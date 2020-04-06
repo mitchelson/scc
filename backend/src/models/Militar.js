@@ -12,7 +12,7 @@ const MilitarSchema = new mongoose.Schema({
     },
     nomeGuerra: {               //Indica o nome de guerra do militar
         type: String,
-        //required:true,
+        required:true,
     },
     eMotorista: {               //Indica se o militar é motorista
         type: Boolean,
@@ -20,7 +20,7 @@ const MilitarSchema = new mongoose.Schema({
     },
     dataNascimento: {           //Indica data de nascimento do militar
         type: String,
-        //require: true
+        require: true
     },
     admin :{                    //Indica se o militar é administrador
         type: Boolean,

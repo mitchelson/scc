@@ -20,7 +20,7 @@ function Viatura() {
   const [disponivel, setDisponivel] = useState(true);
   const [categoria, setCategoria] = useState('');
 
-  //Função para Listar viatura              - OK
+  //Função para Listar viatura
   useEffect(() => {
     async function listaViatura(){    
       const response = await api.get('/listar-viatura');
@@ -29,7 +29,7 @@ function Viatura() {
     listaViatura();
   }, []);
   
-  //Função para Cadastrar/Atualizar viatura - OK
+  //Função para Cadastrar/Atualizar viatura
   async function addViatura(e){
     alert()
     e.preventDefault();
@@ -57,11 +57,10 @@ function Viatura() {
 
   //Função para Deletar viatura             - OK
   async function rmViatura(id){
-    const deletado = await api.delete(`/deletar-viatura?idViatura=${id}`);
-    setViatura(deletado.data);
+    const response = await api.delete(`/deletar-viatura?idViatura=${id}`);
+    setViatura(response.data);
   }
 
-  //O que mostra na tela do navegador  
   return (
     <div id="container">
       <h1>Viatura</h1>

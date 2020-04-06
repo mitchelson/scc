@@ -20,9 +20,7 @@ class ViaturaController {
             return response.status(400).json({error: "Erro ao Pesquisar Viatura"});
         }
     }
-    async store(request, response){   
-        console.log(request.body.idViatura
-            )     //Cadastrar/Editar nova viatura
+    async store(request, response){         //Cadastrar/Editar nova viatura
         try{
             await Viatura.findOneAndUpdate(
                 {idViatura: request.body.idViatura}, 

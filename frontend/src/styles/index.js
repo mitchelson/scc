@@ -2,12 +2,13 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
-  height: 600px;
-  align-content:center;
-  align-items:center;
+  width: 1100px;
+  height: 550px;
+  margin: auto;
+  margin-top:30px;
   background:#fff;
-  border-radius:5px;
+  border-radius:8px;
+  box-shadow:6px 6px 6px 3px rgba(0, 0, 0, 0.4);
 `;
 
 export default createGlobalStyle`
