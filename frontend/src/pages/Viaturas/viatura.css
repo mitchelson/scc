@@ -1,64 +1,64 @@
-#container {
-    display: flex;
-    width: 900px;
+.containerViatura {
+    padding: 20px 0;
     max-width: 900px;
-    height: 400px;
-    max-height: 400px;
-    margin:auto;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;  
+    max-height: 500px;
 }
-#container strong{
+.containerViatura strong{
     color:#000;
     text-align: center;
     font-size: 17px;
 }
-#box{
-    position:absolute;
-    background:#dcdcdc;
-    overflow: auto;
+.containerViatura .tituloViatura{
+    align-items: center;
+    text-align: center;
+}
+.boxViatura{
+    padding: 0;
     display: grid;
     width: 900px;
     max-width: 900px;
-    height: 400px;
-    max-height: 400px;
-    grid-template-columns: 300px 600px;
+    height: 410px;
+    max-height: 410px;
+    grid-template-columns: 300px 560px;
     gap:10px;
     text-align: center;
 }
 
-form{
+.boxViatura form{
+    border-radius: 8px;
+    margin: 0;
     padding-top: 10px;
     width:100%;
     height:100%;
-    max-height: 400px;
     background:#dcdcdc;
 }
-form input{
+.boxViatura form input{
     font-size: 16px;
     width: 92%;
     height: 30px;
     border:0;
     padding-left: 5px;
 }
-form select{
+.boxViatura form select{
     font-size: 16px;
     width: 92%;
     height: 30px;
     border:0;
     padding-left: 5px;
 }
-#registros{
+.boxViatura #registros{
+    border-radius: 8px;
     padding-top: 10px;
-    width:90%;
-    height:400px;
-    overflow:auto;
-    max-height: 400px;
+    margin: 0;
+    height: 100%;
+    overflow: auto;
     background:#dcdcdc;
 }
+.boxViatura #registros::-webkit-scrollbar {
+    display: none;
+  }
 
-#btnPrincipal{
+#btnViatura{
     width: 260px !important;
     height: 30px;
     color: #fff;
@@ -66,11 +66,11 @@ form select{
     font-size: 16px;
     background-image: linear-gradient(to bottom right, green, #00ad10);
 }
-#btnPrincipal:hover{
+#btnViatura:hover{
     color: #fff;
     background-image: linear-gradient(to bottom right, #004f07, #00ad10);
 }
-#btnPrincipal:active{
+#btnViatura:active{
     color: #ddd;
     background-image: linear-gradient(to bottom right, #3b3b3b, #004f07);
 }
@@ -87,16 +87,15 @@ button:active{
     background-image: linear-gradient(to bottom right, #ff6e6e, #ffabab);
 }
 
-table{
+.boxViatura table{
     width: 97%;
 }
-thead{
-    background-color: darkgray;
+.boxViatura table thead{
+    min-height: 30px;
     color:#fff
 }
-tbody{
-    max-height: 450px;
-    overflow: hidden;
+.boxViatura table tbody{
+    width: 515px;
 }
 p{
     margin-top: 15px;
@@ -109,6 +108,9 @@ p{
     margin-left: 3px;
     margin-bottom: 0px;
     vertical-align: middle;
+}
+.inputGroup + .inputGroup{
+    margin-top: 0px;
 }
 
 .inputGroup2{

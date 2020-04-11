@@ -24,19 +24,18 @@ export const SidebarLink = styled(NavLink)`
   margin-left:-10px;
   border-radius: 0 8px 8px 0;
   font-weight:bold;
-  background:#dbdbdb;
+  background-image: linear-gradient(to bottom right, #dcdcdc, #cccc);
   border-bottom:2px solid #a6a6a6;
   border-top:2px solid #a6a6a6;
   border-right:2px solid #a6a6a6;
   padding:25px;
-  transition-duration:300ms;
+  transition:0.5s;
   &:hover {
     color: #fff;
-    transition-duration:300ms;
-    background:#2b2b2b;
+    background: #00ad10;
   };
   &:focus{
-    background:#000;
+    background: green;
     color:#fff;
   }
 `;

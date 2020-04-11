@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import api from '../../services/api';
 import InputMask from 'react-input-mask';
-import './styles.css';
+import './viatura.css';
 
 function Viatura() {
 
@@ -62,11 +62,13 @@ function Viatura() {
   }
 
   return (
-    <div id="container">
-      <h1>Viatura</h1>
-      <div id="box">
+    <div className="containerViatura">
+      <div className="tituloViatura">
+        <h1>VIATURA</h1>
+      </div>
+      <div className="boxViatura">
         <form onSubmit={addViatura}>   
-          <strong>FORMULÁRIO</strong>
+          <strong>FORMULÁRIO VIATURA</strong>
           <div className="inputGroup">
             <input 
               id="idViatura"
@@ -84,45 +86,52 @@ function Viatura() {
             placeholder="Nome"
           />
           </div>
-          <InputMask 
-              mask="99/99/9999"
-              id="dataChegada"
-              name="dataChegada"
-              value={dataChegada}
-              onChange={e => setdataChegada(e.target.value)}
-              placeholder="Data de Chegada"
-            />
+          <div className="inputGroup">
+            <InputMask 
+                mask="99/99/9999"
+                id="dataChegada"
+                name="dataChegada"
+                value={dataChegada}
+                onChange={e => setdataChegada(e.target.value)}
+                placeholder="Data de Chegada"
+              />
+            <input 
+              id="tipo"
+              name="tipo"
+              value={tipo}
+              onChange={e => setTipo(e.target.value)}
+              placeholder="Tipo"/>
+          </div>
             <select value={categoria} onChange={e => setCategoria(e.target.value)}>
             <option disabled defaultValue>Selecione uma Categoria</option>
             <option value="Leve">Leve</option>
             <option value="Medio">Médio</option>
             <option value="Pesado">Pesado</option>
           </select>
-          <input 
-              id="tipo"
-              name="tipo"
-              value={tipo}
-              onChange={e => setTipo(e.target.value)}
-              placeholder="Tipo"/>
-            <span>Motoristas</span>
-          <div className="inputGroup">
             <input 
-              id="motoristaPrincipal"
+              id="idMotorista"
               name="motoristaPrincipal"
               value={motoristaPrincipal}
               onChange={e => setMotoristaP(e.target.value)}
-              placeholder="Principal"
+              placeholder="Chefe de Viatura"
             />
             <input 
               id="motoristaAuxiliar"
               name="motoristaAuxiliar"
               value={motoristaAuxiliar}
               onChange={e => setMotoristaA(e.target.value)}
-              placeholder="Auxiliar"
+              placeholder="Motorista Principal"
             />
-          </div>
-          <button id="btnPrincipal" type="submit">SALVAR</button>
-          <button>LIMPAR</button>
+            <input 
+              id="motoristaAuxiliar"
+              name="motoristaAuxiliar"
+              value={motoristaAuxiliar}
+              onChange={e => setMotoristaA(e.target.value)}
+              placeholder="Motorista Auxiliar"
+            />
+            <button id="btnViatura" type="submit">SALVAR</button>
+            <button>LIMPAR</button>
+          
         </form>
         <div id="registros">
           <strong>REGISTROS</strong>

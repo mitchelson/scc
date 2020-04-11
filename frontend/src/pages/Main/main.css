@@ -1,31 +1,74 @@
-#mainContainer {
-    display: flex;
-    width: 900px;
+.mainContainer {
+    padding: 20px 0;
     max-width: 900px;
-    height: 400px;
-    max-height: 400px;
+    max-height: 500px;
 }
-#mainBox{
-    position: absolute;
+.mainBox{
+    padding: 0;
+    display: grid;
     width: 900px;
     max-width: 900px;
-    height: 400px;
-    max-height: 400px;
-    top: 80px;
-    justify-content: center;
+    height: 410px;
+    max-height: 410px;
+    text-align: center;
+}
+.mainContainer .tituloMain{
     align-items: center;
     text-align: center;
 }
+.fab{
+    position: fixed;
+    bottom:80px;
+    right:170px;
+}
+  
+.fab button{
+    background-image: linear-gradient(to bottom right, green, #00ad10);
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    background-color: #cb60b3;
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,.4);
+    font-size: 34px;
+    color: white;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+.fab button:hover{
+    background-image: linear-gradient(to bottom right, #004f07, #00ad10);
+}
+.fab button:focus{
+    outline: none;
+}
 
-.form{
+.fab button.main{
     position: absolute;
-    display: none;
-    border:2px solid black;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #5b19b7;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.fab button.main:before{
+    content: '+';
+}
+
+.mainForm{
+    padding: 10px; 
+    position: fixed;
     z-index: 5;
-    padding-top: 10px;
-    width:300px;
+    top:200px;
+    left: 530px;
+    width:450px;
+    box-shadow: 10px 10px 200px gray;
     z-index: 5;
-    height:450px;
+    height:300px;
     background:#dcdcdc;
 }
 form input{
@@ -42,13 +85,19 @@ form select{
     border:0;
     padding-left: 5px;
 }
-#mainRegistros{
-    position:absolute;
+.mainRegistros{
+    border-radius: 8px;
     padding-top: 5px;
-    height:400px;
-    max-height:400px;
+    width: 870px;
+    height:420px;
+    max-height:420px;
     background:#dcdcdc;
     overflow: auto;
+    margin: 0;
+}
+
+.mainBox .mainRegistros::-webkit-scrollbar {
+    display: none;
 }
 
 #btnPrincipal{
@@ -80,6 +129,7 @@ form select{
 }
 table{
     width: 97%;
+    table-layout:fixed;
 }
 tbody{
     max-height: 450px;

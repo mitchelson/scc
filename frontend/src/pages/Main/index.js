@@ -8,7 +8,7 @@ function Main() {
 
   //Armazena a lista de militares na constante militar
   const [militar, setMilitar] = useState([]);
-
+  const [showTable, setShowTable] = useState('none');
   //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
   const [inputIdMilitar, setInputId] = useState(true);
   const [idMilitar, setidMilitar] = useState('');
@@ -29,7 +29,14 @@ function Main() {
     }
     listaMilitar();
   }, []);
-  
+  function mostrarTabela(){
+    if(showTable === 'none'){
+      setShowTable('block');
+    }
+    if(showTable === 'block'){
+      setShowTable('none');
+    }
+  }
   //Função para Cadastrar/Atualizar Militar - OK
   async function addMilitar(e){
     e.preventDefault();
@@ -66,9 +73,12 @@ function Main() {
 
   //O que mostra na tela do navegador  
   return (
-    <div id="mainContainer">
-      <form onSubmit={addMilitar} className="form">   
-          <strong>FORMULÁRIO</strong>
+    <div className="mainContainer">
+      <div className="tituloMain">
+        <h1>MOVIMENTAÇÃO DE VIATURAS</h1>
+      </div>
+      <form onSubmit={addMilitar} className="mainForm" style={{display:showTable}}>   
+          <strong>NOVA MOVIMENTAÇÃO</strong>
           <div className="inputGroup">
             <input 
               id="idMilitar"
@@ -86,13 +96,6 @@ function Main() {
               placeholder="Nome de Guerra"
             />
           </div>
-          <input 
-            id="nome"
-            name="nome"
-            value={nome}
-            onChange={e => setNome(e.target.value)}
-            placeholder="Nome Completo"
-          />
           <InputMask 
               mask="99/99/9999"
               id="dataNascimento"
@@ -116,12 +119,6 @@ function Main() {
               onChange={e => seteMotorista(e.target.checked)}
               type="checkbox"/><p>Motorista</p>
           </div>
-          <select value={cursoMotorista} onChange={e => setcursoMotorista(e.target.value)} disabled={!eMotorista}>
-            <option disabled defaultValue>Selecione um Curso</option>
-            <option value="Leve">Leve</option>
-            <option value="Médio">Médio</option>
-            <option value="Pesado">Pesado</option>
-          </select>
           <div className="inputGroup2">
             <input 
               id="senha"
@@ -138,55 +135,58 @@ function Main() {
               type="checkbox"/><p>Admin</p>
           </div>
           <button id="btnPrincipal" type="submit">SALVAR</button>
-          <button>LIMPAR</button>
+          <button onClick={mostrarTabela}>CANCELAR</button>
         </form>
-      <div id="mainBox">
-      <h1>MOVIMENTAÇÃO DE VIATURAS - SAÍDA</h1>
-       <div id="mainRegistros">
-          <table id="tableMain">
-            <thead> 
-              <tr>
-                <th>DATA</th>
-                <th>HORARIO</th>
-                <th>ODOMETRO</th>
-                <th>MOTORISTA (CLASSE)</th>
-                <th>CHEFE VIATURA (CLASSE)</th>
-                <th>DESTINO</th>
-                <th>QTD COMBUSTIVEL   (Selecionar: Pleno, Meio tanque ou Cheio)</th>
-                <th>USUÁRIO (CLASSE)</th>
-              </tr>
-            </thead> 
-            <tbody>
-              {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
-                <tr key={ml._id}>
-                  <td>{ml.idMilitar}</td>
-                  <td>{ml.nome}</td>
-                  <td>---</td>
-                  <td>
-                    <span onClick={() => {  //Botão para editar Militar
-                      setidMilitar(ml.idMilitar);
-                      setInputId(false);
-                      setNome(ml.nome);
-                      setnomeGuerra(ml.nomeGuerra);
-                      setdataNascimento(ml.dataNascimento);
-                      setPelotao(ml.pelotao);
-                      seteMotorista(ml.eMotorista);
-                      setAdmin(ml.admin);
-                      setcursoMotorista(ml.cursoMotorista);
-                      setSenha(ml.senha);
-                      
-                    }} id="iconeEdit"><FaEdit /></span>
-                    <span onClick={() => {  //Botão para deletar Formulário
-                      if (window.confirm('Deseja apagar esse Militar?')){
-                        rmMilitar(ml.idMilitar);
-                      }
-                    }} id="iconeDelete"><FaTrashAlt /></span>
-                  </td>
+      <div className="mainBox">
+      <div className="fab">
+        <button className="main" onClick={mostrarTabela} title="Nova Movimentação">
+        </button>
+      </div>
+      <div className="mainRegistros">
+            <table id="tableMain">
+              <thead> 
+                <tr>
+                  <th>DATA</th>
+                  <th>HORARIO</th>
+                  <th>ODOMETRO</th>
+                  <th>MOTORISTA (CLASSE)</th>
+                  <th>CHEFE VIATURA (CLASSE)</th>
+                  <th>DESTINO</th>
+                  <th>QTD COMBUSTIVEL   (Selecionar: Pleno, Meio tanque ou Cheio)</th>
+                  <th>USUÁRIO (CLASSE)</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead> 
+              <tbody>
+                {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
+                  <tr key={ml._id}>
+                    <td>{ml.idMilitar}</td>
+                    <td>{ml.nome}</td>
+                    <td>---</td>
+                    <td>
+                      <span onClick={() => {  //Botão para editar Militar
+                        setidMilitar(ml.idMilitar);
+                        setInputId(false);
+                        setNome(ml.nome);
+                        setnomeGuerra(ml.nomeGuerra);
+                        setdataNascimento(ml.dataNascimento);
+                        setPelotao(ml.pelotao);
+                        seteMotorista(ml.eMotorista);
+                        setAdmin(ml.admin);
+                        setcursoMotorista(ml.cursoMotorista);
+                        setSenha(ml.senha);
+                        
+                      }} id="iconeEdit"><FaEdit /></span>
+                      <span onClick={() => {  //Botão para deletar Formulário
+                        if (window.confirm('Deseja apagar esse Militar?')){
+                          rmMilitar(ml.idMilitar);
+                        }
+                      }} id="iconeDelete"><FaTrashAlt /></span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
       </div>
     </div>
   );
