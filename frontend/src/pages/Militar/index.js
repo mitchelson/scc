@@ -67,7 +67,7 @@ function Militar() {
   return (
     <div className="containerMilitar">
       <div className="tituloMilitar">
-        <h1>MILITAR</h1>
+        <h2>MILITAR</h2>
       </div>
       <div className="boxMilitar">
         <form onSubmit={addMilitar}>   

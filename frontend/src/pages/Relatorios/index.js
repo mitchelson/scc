@@ -24,7 +24,7 @@ function Relatorios() {
   //Função para Listar Militar              - OK
   useEffect(() => {
     async function listaMilitar(){    
-      const response = await api.get('/listar-militar');
+      const response = await api.get('/listar-movimento?aberto=false');
       setMilitar(response.data);
     }
     listaMilitar();

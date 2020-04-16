@@ -1,3 +1,9 @@
+input, select{
+    border-radius: 3px;
+}
+strong, h2{
+    color:#363636;
+}
 .mainContainer {
     padding: 20px 0;
     max-width: 900px;
@@ -60,31 +66,20 @@
 }
 
 .mainForm{
+    border-radius: 8px;
     padding: 10px; 
+    padding-top:20px;
     position: fixed;
     z-index: 5;
-    top:200px;
+    top:190px;
     left: 530px;
-    width:450px;
-    box-shadow: 10px 10px 200px gray;
+    width:435px;
+    box-shadow: 10px 10px 200px #000;
     z-index: 5;
-    height:300px;
+    height:320px;
     background:#dcdcdc;
 }
-form input{
-    font-size: 16px;
-    width: 92%;
-    height: 30px;
-    border:0;
-    padding-left: 5px;
-}
-form select{
-    font-size: 16px;
-    width: 92%;
-    height: 30px;
-    border:0;
-    padding-left: 5px;
-}
+
 .mainRegistros{
     border-radius: 8px;
     padding-top: 5px;
@@ -124,14 +119,15 @@ form select{
     background-color: darkgray !important;
     columns: #000000; 
 } 
-#tableMain{
-    width: 97%;
-}
-table{
+.mainRegistros table{
     width: 97%;
     table-layout:fixed;
 }
-tbody{
+.mainRegistros table thead th{
+    height: 40px;
+    table-layout:fixed;
+}
+#tableMain table tbody{
     max-height: 450px;
     overflow: hidden;
 }
@@ -151,16 +147,35 @@ p{
     vertical-align: middle;
 }
 
-.inputGroup2{
-    margin-top: 0;
+.inputGroupMotoristas{
+    height: 40px;
+    margin-top: 0 !important;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: auto 50px 80px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 110px 305px;
+    margin-left: 3px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+.inputGroup3{
+    height: 40px;
+    display: grid;
+    grid-template-columns: 100px 100px 210px;
     margin-left: 3px;
     margin-bottom: 0px;
     vertical-align: middle;
 }
-
+.inputGroup4{
+    height: 40px;
+    width: 400px;
+    margin-top: 0;
+    display: grid;
+    margin-left: 3px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 300px 100px;
+    margin-bottom: 0px;
+    justify-content: space-between;
+}
 .inputGroupbtn{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -169,6 +184,20 @@ p{
     margin-left: 3px;
     margin-bottom: 0px;
     vertical-align: middle;
+}
+.btnForm{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 80px 80px;
+    gap:10px;
+    justify-content: space-evenly;
+}
+#novaMovimentacao{
+    color: #fff;
+    background-image: linear-gradient(to bottom right, green, #00ad10);
+}
+#novaMovimentacao:hover{
+    background-image: linear-gradient(to bottom right, #004f07, #00ad10);
 }
 
 .inputGroupbtn button{

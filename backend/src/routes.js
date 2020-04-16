@@ -2,6 +2,7 @@ const { Router } = require('express');
 const MilitarController = require('./controllers/MilitarController');
 const ViaturaController = require('./controllers/ViaturaController');
 const SessionController = require('./controllers/SessionController');
+const MovimentoController = require('./controllers/MovimentoController');
 
 const routes = Router();
 
@@ -14,6 +15,11 @@ routes.get('/listar-viatura', ViaturaController.index);
 routes.get('/pesquisar-viatura', ViaturaController.show);
 routes.post('/cadastrar-viatura', ViaturaController.store);
 routes.delete('/deletar-viatura', ViaturaController.destroy);
+
+routes.get('/listar-movimento', MovimentoController.index);
+routes.get('/atualizar-movimento', MovimentoController.show);
+routes.post('/cadastrar-movimento', MovimentoController.store);
+routes.delete('/deletar-movimento', MovimentoController.destroy);
 
 routes.get('/login', SessionController.index);
 

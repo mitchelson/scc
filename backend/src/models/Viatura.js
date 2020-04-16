@@ -17,6 +17,10 @@ const ViaturaSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
+    chefeViatura :{       //Indica o motorista principal da viatura
+        type: Number,
+        required: true,
+    },
     motoristaPrincipal :{       //Indica o motorista principal da viatura
         type: Number,
         required: true,
@@ -27,7 +31,6 @@ const ViaturaSchema = new mongoose.Schema({
     },
     disponivel :{               //Indica se a viatura está disponível ou não
         type: Boolean,
-        //required: true,
     },
     categoria :{                //Indica a categoria da viatura
         type: String,

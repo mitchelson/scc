@@ -1,38 +1,37 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
 
 const MovimentoSchema = new mongoose.Schema({
-    idMilitar: {               //Indica Id único no sistema para cada militar
-        type: Number,
+    data: {                         //Indica Id único no sistema para cada militar
+        type: Date,
         //require: true,
     },
-    nome: {                     //Indica o nome do militar
-        type: String,
+    odometroo: {                    //Indica o nome do militar
+        type: Number,
         required:true,
     },
-    nomeGuerra: {               //Indica o nome de guerra do militar
-        type: String,
-        //required:true,
+    idMotorista: {                  //Indica o nome de guerra do militar
+        type: Number,
+        required:true,
     },
-    eMotorista: {               //Indica se o militar é motorista
+    chefeViatura: {                 //Indica se o militar é motorista
+        type: Number,
+        require: true,
+    },
+    idUsuario: {                    //Indica data de nascimento do militar
+        type: Number,
+        require: true
+    },
+    destino :{                      //Indica se o militar é administrador
+        type: String,
+        required: true,
+    },
+    qtdCombustivel: {               //Indica o curso que o militar possui pra poder dirigir
+        type: String,
+        require: true,
+    },
+    aberto:{
         type: Boolean,
-        //require: true,
-    },
-    dataNascimento: {           //Indica data de nascimento do militar
-        type: String,
-        //require: true
-    },
-    admin :{                    //Indica se o militar é administrador
-        type: Boolean,
-        //required: true,
-    },
-    cursoMotorista: {           //Indica o curso que o militar possui pra poder dirigir
-        type: String,
-        //require: true,
-    },
-    pelotao : {                 //Indica o pelotao que o militar pertence
-        type: String,
-        //require: true
+        required: true
     }
 });
 
