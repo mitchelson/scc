@@ -199,7 +199,7 @@ function Main() {
                 {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
                   <tr key={mv._id}>
                     <th>{mv.data}</th>
-                    <th>{mv.odometro}</th>
+                    <th>{mv.odometroS}</th>
                     <th>{mv.destino}</th>
                     <th>{mv.qtdCombustivel}</th>
                     <th>{mv.chefeViatura}</th>
