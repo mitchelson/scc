@@ -11,11 +11,10 @@ class MilitarController {
     }
     async show(request, response){          //Pesquisar militar especifico passando id do militar como parametro
         try{
-            const militarDelete = request.query.idMilitar;
-            const response = await Militar.find({
-                idMilitar: militarDelete
+            const militarP = await Militar.findOne({
+                idMilitar: request.query.idMilitar,
             });
-            return response.json(response);
+            return response.json(militarP);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Pesquisar Militar"});
         }

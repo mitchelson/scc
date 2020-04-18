@@ -71,16 +71,17 @@ strong, h2{
     padding-top:20px;
     position: fixed;
     z-index: 5;
-    top:190px;
+    top:130px;
     left: 530px;
     width:435px;
     box-shadow: 10px 10px 200px #000;
     z-index: 5;
-    height:320px;
+    height:390px;
     background:#dcdcdc;
 }
 
 .mainRegistros{
+    font-size: 12px;
     border-radius: 8px;
     padding-top: 5px;
     width: 870px;
@@ -154,10 +155,17 @@ p{
     grid-template-columns: repeat(2, 1fr);
     grid-template-columns: 110px 305px;
     margin-left: 3px;
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
     justify-content: space-between;
 }
+p{
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .inputGroup3{
+    margin-top: 0;
+    margin-bottom: 0;
     height: 40px;
     display: grid;
     grid-template-columns: 100px 100px 210px;
@@ -173,7 +181,8 @@ p{
     margin-left: 3px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-columns: 300px 100px;
-    margin-bottom: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
     justify-content: space-between;
 }
 .inputGroupbtn{

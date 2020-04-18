@@ -15,19 +15,15 @@ const MovimentoSchema = new mongoose.Schema({
     distancia: {                    //Indica o nome do militar
         type: Number,
     },
-    idMotorista: {                  //Indica o nome de guerra do militar
-        type: Number,
-        required:true,
-    },
-    chefeViatura: {                 //Indica se o militar é motorista
+    idChefeViatura: {                 //Indica se o militar é motorista
         type: Number,
         require: true,
     },
-    motoristaA: {                    //Indica data de nascimento do militar
+    idMotoristaP: {                    //Indica data de nascimento do militar
         type: Number,
         require: true
     },
-    motoristaP: {                    //Indica data de nascimento do militar
+    idMotoristaA: {                    //Indica data de nascimento do militar
         type: Number,
         require: true
     },
@@ -45,7 +41,6 @@ const MovimentoSchema = new mongoose.Schema({
     },
     qtdCombustivelC: {               //Indica o curso que o militar possui pra poder dirigir
         type: String,
-        require: true,
     },
     obs:{
         type:String,
