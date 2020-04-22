@@ -11,9 +11,8 @@ class ViaturaController {
     }
     async show(request, response){          //Pesquisar viatura especifico passando id do viatura como parametro
         try{
-            const find = request.query.idViatura;
-            const viatura = await Viatura.find({
-                idViatura: find
+            const viatura = await Viatura.findOne({
+                idViatura: request.query.idViatura,
             });
             return response.json(viatura);
         } catch (err) {

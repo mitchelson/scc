@@ -11,9 +11,8 @@ class MovimentoController {
     }
     async show(request, response){          //Pesquisar movimentação
         try{
-            const militarDelete = request.query.idMovimento;
             const response = await Movimento.find({
-                idMovimento: militarDelete
+                dataS: request.query.dataS
             });
             return response.json(response);
         } catch (err) {
@@ -22,12 +21,11 @@ class MovimentoController {
     }
     async store(request, response){         //Cadastrar/Editar movimentações
         try{
-            await Movimento.findOneAndUpdate(
-                {data: request.body.data},
+            const mov = await Movimento.findOneAndUpdate(
+                {dataS: request.body.dataS},
                 {$set:request.body}, 
                 {upsert: true});
-            const militar = await Movimento.find();
-            return response.json(militar);
+            return response.json(mov);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Cadastrar Movimento"});
         }
@@ -35,8 +33,8 @@ class MovimentoController {
     async destroy(request, response){       //Deletar movimentações específicas, necessita de parametro id
         try{
             await Movimento.deleteOne(request.query);
-            const militar = await Movimento.find();
-            return response.json(militar);
+            const mov = await Movimento.find();
+            return response.json(mov);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Deletar Registro do Movimento"});
         }
