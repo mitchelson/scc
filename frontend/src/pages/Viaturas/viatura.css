@@ -56,8 +56,7 @@
 }
 .boxViatura #registros::-webkit-scrollbar {
     display: none;
-  }
-
+}
 #btnViatura{
     width: 260px !important;
     height: 30px;
