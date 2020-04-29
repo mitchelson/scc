@@ -9,14 +9,12 @@ class MovimentoController {
             return response.status(400).json({error: "Erro ao Listar Movimentações"});
         }
     }
-    async show(request, response){          //Pesquisar movimentação
+    async show(request, response){         //Listar movimentação com filtro de aberta(true) ou fechada(false)
         try{
-            const response = await Movimento.find({
-                dataS: request.query.dataS
-            });
-            return response.json(response);
+            const movimento = await Movimento.findOne(request.query);
+            return response.json(movimento);    
         } catch (err) {
-            return response.status(400).json({error: "Erro ao Pesquisar Movimento"});
+            return response.status(400).json({error: "Erro ao Listar Movimentações"});
         }
     }
     async store(request, response){         //Cadastrar/Editar movimentações

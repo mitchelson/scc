@@ -17,7 +17,7 @@ routes.post('/cadastrar-viatura', ViaturaController.store);
 routes.delete('/deletar-viatura', ViaturaController.destroy);
 
 routes.get('/listar-movimento', MovimentoController.index);
-routes.get('/atualizar-movimento', MovimentoController.show);
+routes.get('/pesquisar-movimento', MovimentoController.show);
 routes.post('/cadastrar-movimento', MovimentoController.store);
 routes.delete('/deletar-movimento', MovimentoController.destroy);
 

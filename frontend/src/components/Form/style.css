@@ -1,0 +1,66 @@
+input, select{
+    border-radius: 3px;
+}
+strong, h2{
+    color:#363636;
+}
+.mainForm{
+    border-radius: 8px;
+    padding: 10px; 
+    padding-top:20px;
+    position: fixed;
+    z-index: 5;
+    top:90px;
+    left: 520px;
+    width:450px;
+    box-shadow: 10px 10px 100px #000;
+    z-index: 5;
+    height:490px;
+    background: #cccccc;
+}
+.inputGroup3{
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 100px 100px 210px;
+    margin-left: 3px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+.inputGroup4{
+    height: 40px;
+    width: 400px;
+    margin-top: 0;
+    display: grid;
+    margin-left: 3px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 250px 150px;
+    gap:0px;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: space-between;
+}
+.inputGroupMotoristas{
+    height: 40px;
+    margin-top: 0 !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 110px 305px;
+    margin-left: 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+    justify-content: space-between;
+}
+.btnForm{
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 100px 100px;
+    display: grid;
+    justify-content: space-evenly;
+}
+.btnForm button{
+    font-weight: normal;
+    font-size: 18px;
+}

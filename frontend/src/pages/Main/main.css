@@ -22,32 +22,49 @@ strong, h2{
     align-items: center;
     text-align: center;
 }
+.formNovaMovimentacao{
+    position: fixed;
+    top:20%;
+    left: 72%;
+    transition: 0.5s;
+}
+.formNovaMovimentacao .close{
+    background-image: linear-gradient(to bottom right, #d11f1f, #dd3939);
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,.4);
+    font-size: 34px;
+    color: white;
+    z-index: 7;
+}
+.formNovaMovimentacao button.close{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+.formNovaMovimentacao button.close:before{
+    content: 'x';
+}
 .fab{
     position: fixed;
     bottom:90px;
     right:170px;
 }
-  
 .fab button{
     background-image: linear-gradient(to bottom right, green, #00ad10);
     cursor: pointer;
     width: 48px;
     height: 48px;
-    border-radius: 30px;
-    background-color: #cb60b3;
     border: none;
     box-shadow: 0 1px 5px rgba(0,0,0,.4);
     font-size: 34px;
     color: white;
-    -webkit-transition: .2s ease-out;
-    -moz-transition: .2s ease-out;
-    transition: .2s ease-out;
-}
-.fab button:hover{
-    background-image: linear-gradient(to bottom right, #004f07, #00ad10);
-}
-.fab button:focus{
-    outline: none;
 }
 .fab button.main{
     position: absolute;
@@ -56,29 +73,16 @@ strong, h2{
     border-radius: 30px;
     right: 0;
     bottom: 0;
-    z-index: 20;
+    z-index: 6;
 }
-
+.fab button:hover{
+    background-image: linear-gradient(to bottom right, #004f07, #00ad10);
+}
+.fab button:focus{
+    outline: none;
+}
 .fab button.main:before{
     content: '+';
-}
-.fab button.main:focus{
-    content: 'X';
-}
-
-.mainForm{
-    border-radius: 8px;
-    padding: 10px; 
-    padding-top:20px;
-    position: fixed;
-    z-index: 5;
-    top:90px;
-    left: 520px;
-    width:450px;
-    box-shadow: 10px 10px 200px #000;
-    z-index: 5;
-    height:490px;
-    background:#dcdcdc;
 }
 .mainDetail{
     border-radius: 8px;
@@ -87,9 +91,9 @@ strong, h2{
     position: fixed;
     z-index: 5;
     top:90px;
-    left: 380px;
+    left: 25%;
     width:750px;
-    box-shadow: 10px 10px 200px #000;
+    box-shadow: 10px 10px 100px #000;
     z-index: 5;
     height:490px;
     background:#dcdcdc;
@@ -272,7 +276,13 @@ p{
     width: 80px;
 }
 
-.iconeDetalhe{
-    color: #ff8a8a;
+table .iconeDetalhe{
+    color: green;
     font-size: 15px;
+    transition: 0.3s;
+}
+table .iconeDetalhe:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #aaa;
 }
