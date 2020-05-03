@@ -34,6 +34,9 @@ const MilitarSchema = new mongoose.Schema({
         type: String,
         //require: true
     },
+    disponivel: {
+        type : String,
+    },
     senha: {                    //Senha de acesso do militar para o sistema
         type: String,
         select: false,

@@ -1,8 +1,8 @@
 input, select{
     border-radius: 3px;
 }
-strong, h2{
-    color:#363636;
+strong, h3{
+    color:#000;
 }
 .mainForm{
     border-radius: 8px;
@@ -10,7 +10,7 @@ strong, h2{
     padding-top:20px;
     position: fixed;
     z-index: 5;
-    top:90px;
+    top:8%;
     left: 520px;
     width:450px;
     box-shadow: 10px 10px 100px #000;
@@ -55,8 +55,7 @@ strong, h2{
 .btnForm{
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 100px;
     display: grid;
     justify-content: space-evenly;
 }

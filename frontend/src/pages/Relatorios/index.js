@@ -1,195 +1,100 @@
 import React, { useState, useEffect } from 'react';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { FaEye } from 'react-icons/fa';
 import api from '../../services/api';
-import InputMask from 'react-input-mask';
-import './styles.css';
+import Detail from './../../components/Detail';
+import Form from './../../components/Form';
+import './relatorio.css';
 
-function Relatorios() {
+function Relatorio() {
 
   //Armazena a lista de militares na constante militar
-  const [militar, setMilitar] = useState([]);
-
-  //Dados do Militar, usados para cadastrar/atualizar o registro de um militar
-  const [inputIdMilitar, setInputId] = useState(true);
-  const [idMilitar, setidMilitar] = useState('');
-  const [nome, setNome] = useState('');
-  const [nomeGuerra, setnomeGuerra] = useState('');
-  const [pelotao, setPelotao] = useState('');
-  const [dataNascimento, setdataNascimento] = useState('');
-  const [eMotorista, seteMotorista] = useState(false);
-  const [admin, setAdmin] = useState(false);
-  const [cursoMotorista, setcursoMotorista] = useState('');
-  const [senha, setSenha] = useState('');
-
-  //Função para Listar Militar              - OK
-  useEffect(() => {
-    async function listaMilitar(){    
-      const response = await api.get('/listar-movimento?aberto=false');
-      setMilitar(response.data);
-    }
-    listaMilitar();
-  }, []);
+  const [refresh, setRefresh] = useState(0);
+  const [movimentos, setMovimentos] = useState([]);
+  const [detail, setDetail] = useState([]);
+  const [showForm, setShowForm] = useState('none');
+  const [showDetail, setShowDetail] = useState('none');
   
-  //Função para Cadastrar/Atualizar Militar - OK
-  async function addMilitar(e){
-    e.preventDefault();
-    const response = await api.post('/cadastrar-militar', {
-      idMilitar,
-      nome,
-      nomeGuerra,
-      pelotao,
-      dataNascimento,
-      eMotorista,
-      admin,
-      cursoMotorista,
-      senha
-    })
-    setidMilitar('');
-    setNome('');
-    setnomeGuerra('');
-    setPelotao('');
-    setdataNascimento('');
-    seteMotorista(false);
-    setAdmin(false);
-    setcursoMotorista('');
-    setSenha('');
-    setInputId(true);
-
-    setMilitar(response.data);
-  }   
-
-  //Função para Deletar Militar             - OK
-  async function rmMilitar(id){
-    const deletado = await api.delete(`/deletar-militar?idMilitar=${id}`);
-    setMilitar(deletado.data);
+  //Função para Listar Militar - OK
+  useEffect(() => {
+    async function listarMovimentos(){    
+      const response = await api.get('/listar-movimento?aberto=false');
+      setMovimentos(response.data);
+    }
+    listarMovimentos();
+  }, [showForm]);
+  
+  function mostrarForm(){
+    if(showForm === 'none'){
+      setShowForm('block');
+    }
+    setRefresh(0);
+  }
+  function ocultarForm(){
+    if(showForm === 'block'){
+      setShowForm('none');
+    }
+    setRefresh(0);
   }
 
+  async function mostrarDetail(dataS){
+    if(showDetail === 'none'){
+      const response = await api.get(`/pesquisar-movimento?dataS=${dataS}`);
+      setDetail(response.data);
+      setShowDetail('block');
+    }
+  }
+  function ocultarDetail(){
+    setShowDetail('none');
+    setDetail([]);
+  }
+  
   //O que mostra na tela do navegador  
   return (
-    <div id="mainContainer">
-      <form onSubmit={addMilitar} className="form">   
-          <strong>FORMULÁRIO</strong>
-          <div className="inputGroup">
-            <input 
-              id="idMilitar"
-              name="idMilitar"
-              value={idMilitar}
-              disabled={!inputIdMilitar}
-              onChange={e => setidMilitar(e.target.value)}
-              placeholder="Identidade"
-            />
-            <input 
-              id="nomeGuerra"
-              name="nomeGuerra"
-              value={nomeGuerra}
-              onChange={e => setnomeGuerra(e.target.value)}
-              placeholder="Nome de Guerra"
-            />
-          </div>
-          <input 
-            id="nome"
-            name="nome"
-            value={nome}
-            onChange={e => setNome(e.target.value)}
-            placeholder="Nome Completo"
-          />
-          <InputMask 
-              mask="99/99/9999"
-              id="dataNascimento"
-              name="dataNascimento"
-              value={dataNascimento}
-              onChange={e => setdataNascimento(e.target.value)}
-              placeholder="Data de Nascimento"
-            />
-          <div className="inputGroup2">
-            <input 
-              id="pelotao"
-              name="pelotao"
-              value={pelotao}
-              onChange={e => setPelotao(e.target.value)}
-              placeholder="Pelotão"
-            />
-            <input 
-              id="eMotorista"
-              name="eMotorista"
-              value={eMotorista}
-              onChange={e => seteMotorista(e.target.checked)}
-              type="checkbox"/><p>Motorista</p>
-          </div>
-          <select value={cursoMotorista} onChange={e => setcursoMotorista(e.target.value)} disabled={!eMotorista}>
-            <option disabled defaultValue>Selecione um Curso</option>
-            <option value="Leve">Leve</option>
-            <option value="Médio">Médio</option>
-            <option value="Pesado">Pesado</option>
-          </select>
-          <div className="inputGroup2">
-            <input 
-              id="senha"
-              name="senha"
-              value={senha}
-              onChange={e => setSenha(e.target.value)}
-              placeholder="Senha" 
-              type="password"/>
-            <input 
-              id="admin"
-              name="admin"
-              value={admin}
-              onChange={e => setAdmin(e.target.checked)}
-              type="checkbox"/><p>Admin</p>
-          </div>
-          <button id="btnPrincipal" type="submit">SALVAR</button>
-          <button>LIMPAR</button>
-        </form>
-      <div id="mainBox">
-      <h1>RELATÓRIO DE MOVIMENTAÇÃO</h1>
-       <div id="mainRegistros">
-          <table id="tableMain">
-            <thead> 
-              <tr>
-                <th>DATA</th>
-                <th>HORARIO</th>
-                <th>ODOMETRO</th>
-                <th>MOTORISTA (CLASSE)</th>
-                <th>CHEFE VIATURA (CLASSE)</th>
-                <th>DESTINO</th>
-                <th>QTD COMBUSTIVEL   (Selecionar: Pleno, Meio tanque ou Cheio)</th>
-                <th>USUÁRIO (CLASSE)</th>
-              </tr>
-            </thead> 
-            <tbody>
-              {militar.map(ml => (     //Faz um FOR dentro do array 'militar', e coloca em 'ml'
-                <tr key={ml._id}>
-                  <td>{ml.idMilitar}</td>
-                  <td>{ml.nome}</td>
-                  <td>---</td>
-                  <td>
-                    <span onClick={() => {  //Botão para editar Militar
-                      setidMilitar(ml.idMilitar);
-                      setInputId(false);
-                      setNome(ml.nome);
-                      setnomeGuerra(ml.nomeGuerra);
-                      setdataNascimento(ml.dataNascimento);
-                      setPelotao(ml.pelotao);
-                      seteMotorista(ml.eMotorista);
-                      setAdmin(ml.admin);
-                      setcursoMotorista(ml.cursoMotorista);
-                      setSenha(ml.senha);
-                      
-                    }} id="iconeEdit"><FaEdit /></span>
-                    <span onClick={() => {  //Botão para deletar Formulário
-                      if (window.confirm('Deseja apagar esse Militar?')){
-                        rmMilitar(ml.idMilitar);
-                      }
-                    }} id="iconeDelete"><FaTrashAlt /></span>
-                  </td>
+    <div className="mainContainer">
+      <div className="tituloMain">
+        <h2>RELATÓRIOS DE MOVIMENTAÇÕES</h2>
+      </div>
+      <div className="formDetail" style={{display:showDetail}}>
+        <button className="close" onClick={ocultarDetail} title="Nova Movimentação" />
+        <Detail detail={detail} showDetail={showDetail} />
+      </div>
+      <div className="formNovaMovimentacao" style={{display:showForm}}>
+        <button className="close" onClick={ocultarForm} title="Nova Movimentação" />
+        <Form showForm={showForm} className="form"/>
+      </div>
+      <div className="mainBox">
+      <div className="fab"> 
+        <button className="main" onClick={mostrarForm} title="Nova Movimentação" />
+      </div>
+      <div className="mainRegistros">
+            <table>
+              <thead> 
+                <tr>
+                  <th>VIATURA</th>
+                  <th>DATA</th>
+                  <th>HORA</th>
+                  <th>DESTINO</th>
+                  <th>COMBUSTIVEL</th>
+                  <th>DETALHES</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead> 
+              <tbody>
+                {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
+                  <tr key={mv._id}>
+                    <th>{mv.idViatura}</th>
+                    <th>{mv.dataS.match(/\d\d\d\d-\d\d-\d\d/)}</th>
+                    <th>{mv.dataS.match(/\d\d:\d\d:\d\d/)}</th>
+                    <th>{mv.destino}</th>
+                    <th>{mv.qtdCombustivelS}</th> 
+                    <th onClick={() => {mostrarDetail(mv.dataS)}} className="iconeDetalhe"><FaEye/></th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
       </div>
     </div>
   );
 }
 
-export default Relatorios;
+export default Relatorio;

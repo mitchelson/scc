@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ViaturaSchema = new mongoose.Schema({
     idViatura: {               //Indica Id único no sistema para cada viatura
-        type: Number,
+        type: String,
         require: true,
     },
     nome: {                     //Indica o nome da viatura
@@ -30,7 +30,7 @@ const ViaturaSchema = new mongoose.Schema({
         required: true,
     },
     disponivel :{               //Indica se a viatura está disponível ou não
-        type: Boolean,
+        type: String,
     },
     categoria :{                //Indica a categoria da viatura
         type: String,

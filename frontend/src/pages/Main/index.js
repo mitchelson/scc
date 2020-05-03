@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaEye } from 'react-icons/fa';
 import api from '../../services/api';
-import Detail from './Detail';
+import Detail from './../../components/Detail';
 import Form from './../../components/Form';
 import './main.css';
 
@@ -27,6 +27,9 @@ function Main() {
     if(showForm === 'none'){
       setShowForm('block');
     }
+    setRefresh(0);
+  }
+  function ocultarForm(){
     if(showForm === 'block'){
       setShowForm('none');
     }
@@ -35,15 +38,15 @@ function Main() {
 
   async function mostrarDetail(dataS){
     if(showDetail === 'none'){
-      setShowDetail('block');
       const response = await api.get(`/pesquisar-movimento?dataS=${dataS}`);
-      setDetail(response.data)
+      setDetail(response.data);
+      setShowDetail('block');
     }
-    if(showDetail === 'block'){
-      setShowDetail('none');
-      setDetail([]);
-    }
-  }  
+  }
+  function ocultarDetail(){
+    setShowDetail('none');
+    setDetail([]);
+  }
   
   //O que mostra na tela do navegador  
   return (
@@ -51,9 +54,12 @@ function Main() {
       <div className="tituloMain">
         <h2>MOVIMENTAÇÃO DE VIATURAS</h2>
       </div>
-      <Detail detail={detail} showDetail={showDetail} />
+      <div className="formDetail" style={{display:showDetail}}>
+        <button className="close" onClick={ocultarDetail} title="Nova Movimentação" />
+        <Detail detail={detail} showDetail={showDetail} />
+      </div>
       <div className="formNovaMovimentacao" style={{display:showForm}}>
-        <button className="close" onClick={mostrarForm} title="Nova Movimentação" />
+        <button className="close" onClick={ocultarForm} title="Nova Movimentação" />
         <Form showForm={showForm} className="form"/>
       </div>
       <div className="mainBox">

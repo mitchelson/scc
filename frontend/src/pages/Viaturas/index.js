@@ -31,6 +31,7 @@ function Viatura() {
     }
     listaViatura();
   }, []);
+
   useEffect(() => {
     async function militaresSelect(){    
       const response = await api.get('/listar-militar');
@@ -38,6 +39,7 @@ function Viatura() {
     }
     militaresSelect();
   }, [militarReset]);
+
   function clean(){
     setReset(true);
     setReset(false)
@@ -53,7 +55,7 @@ function Viatura() {
       chefeViatura,
       motoristaPrincipal,
       motoristaAuxiliar,
-      disponivel,
+      disponivel:"green",
       categoria,
     })
     setidviatura('');
@@ -65,7 +67,6 @@ function Viatura() {
     setdataChegada(false);
     setCategoria('');
     setInputId(true);
-
     setViatura(response.data);
   }   
 
@@ -167,7 +168,7 @@ function Viatura() {
               <tr>
                 <th>IDENTIDADE</th>
                 <th>NOME</th>
-                <th>STATUS</th>
+                <th>DISPONÍVEL</th>
                 <th>AÇÕES</th>
               </tr>
             </thead> 
@@ -176,7 +177,7 @@ function Viatura() {
                 <tr key={vt._id}>
                   <td>{vt.idViatura}</td>
                   <td>{vt.nome}</td>
-                  <td>---</td>
+                  <td><span style={{color:vt.disponivel}}>o</span></td>
                   <td>
                     <span onClick={() => {  //Botão para editar viatura
                       setidviatura(vt.idViatura);

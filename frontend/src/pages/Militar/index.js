@@ -42,6 +42,7 @@ function Militar() {
       eMotorista,
       admin,
       cursoMotorista,
+      disponivel:"green",
       senha
     })
     setidMilitar('');
@@ -151,7 +152,7 @@ function Militar() {
               <tr>
                 <th scope="col">IDENTIDADE</th>
                 <th scope="col">NOME</th>
-                <th scope="col">STATUS</th>
+                <th scope="col">DISPONÍVEL</th>
                 <th scope="col">AÇÕES</th>
               </tr>
             </thead>
@@ -160,7 +161,7 @@ function Militar() {
                 <tr key={ml._id}>
                   <td>{ml.idMilitar}</td>
                   <td>{ml.nome}</td>
-                  <td>---</td>
+                  <td><span style={{color:ml.disponivel}}>o</span></td>
                   <td>
                     <span onClick={() => {  //Botão para editar Militar
                       setidMilitar(ml.idMilitar);

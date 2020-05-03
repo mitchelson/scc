@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { FaSave} from 'react-icons/fa';
 import api from '../../services/api';
 import InputMask from 'react-input-mask';
-import './style.css';
+import './form.css';
 
-function Form(){
+function Form({showForm}){
 
     const [detail, setDetail] = useState([]);
 
@@ -44,12 +44,29 @@ function Form(){
         setDataS(date+"T"+time+".000Z");
       }
       carregaData();
-    }, []);
+    }, [showForm]);
+    
+    useEffect(() => {
+      async function limparForm(){   ''
+        setOdometroS('');
+        setnomeViatura('Viatura');
+        setIdMotoristaP('');
+        setnomeMotoristaP('Militar');
+        setIdMotoristaA('');
+        setnomeMotoristaA('Militar');
+        setidChefeViatura('');
+        setnomeChefeViatura('Militar');
+        setDestino('');
+        setQtdCombustivelS('');
+        setIdViatura('');
+      }
+      limparForm();
+    }, [showForm]);
 
-    //Função para Cadastrar/Atualizar Militar - OK
-    async function addMilitar(e){
+    //Função para Cadastrar/Atualizar Movimento - OK
+    async function addMovimento(e){
       e.preventDefault();
-      const response = await api.post('/cadastrar-movimento', {
+      await api.post('/cadastrar-movimento', {
         dataS,
         odometroS,
         idChefeViatura,
@@ -60,7 +77,28 @@ function Form(){
         destino,
         qtdCombustivelS,
         aberto:true
-      })
+      });
+      alert("cadastrar mov")
+      await api.post('/atualizar-militar',{
+        idMilitar: 3420906,
+        disponivel:"red"
+      });
+      alert("chefe")
+      await api.post('/atualizar-militar',{
+        idMilitar: 55555,
+        disponivel:"red"
+      });
+      alert("motoristaP")
+      await api.post('/atualizar-militar',{
+        idMilitar: 3420906,
+        disponivel:"red"
+      });
+      alert("motoristaA")
+      await api.post('/atualizar-viatura',{
+        idViatura,
+        disponivel:"red"
+      });
+      alert("viatura")
       setDia('');
       setDataS('');
       setHora('');
@@ -80,7 +118,7 @@ function Form(){
 return (
     
   <div className="mainForm">
-  <form onSubmit={addMilitar}>   
+  <form onSubmit={addMovimento}>   
       <h3>NOVA MOVIMENTAÇÃO</h3>
       <div className="inputGroup3">
         <InputMask 
