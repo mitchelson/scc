@@ -55,17 +55,17 @@ function Detail(props){
       });
       alert("cadastrar mov")
       await api.post('/atualizar-militar',{
-        idMilitar: 3420906,
+        idMilitar: idChefeViatura,
         disponivel:"green"
       });
       alert("chefe")
       await api.post('/atualizar-militar',{
-        idMilitar: 55555,
+        idMilitar: idMotoristaP,
         disponivel:"green"
       });
       alert("motoristaP")
       await api.post('/atualizar-militar',{
-        idMilitar: 3420906,
+        idMilitar: idMotoristaA,
         disponivel:"green"
       });
       alert("motoristaA")
