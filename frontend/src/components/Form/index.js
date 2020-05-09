@@ -15,6 +15,8 @@ function Form({showForm}){
     const [odometroS, setOdometroS] = useState('');
     const [odometroC, setOdometroC] = useState('');
 
+    const [obs, setObs] = useState('');
+
     const [idChefeViatura, setidChefeViatura] = useState('');
     const [nomeChefeViatura, setnomeChefeViatura] = useState('');
 
@@ -74,6 +76,7 @@ function Form({showForm}){
         idMotoristaA,
         idUsuario:localStorage.getItem('id'),
         idViatura,
+        obs,
         destino,
         qtdCombustivelS,
         aberto:true

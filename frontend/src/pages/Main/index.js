@@ -62,11 +62,11 @@ function Main() {
         <button className="close" onClick={ocultarForm} title="Nova Movimentação" />
         <Form showForm={showForm} className="form"/>
       </div>
-      <div className="mainBox">
+      <div className="mainBoxMovimentacao">
       <div className="fab"> 
         <button className="main" onClick={mostrarForm} title="Nova Movimentação" />
       </div>
-      <div className="mainRegistros">
+      <div className="mainMovimentacao">
             <table>
               <thead> 
                 <tr>

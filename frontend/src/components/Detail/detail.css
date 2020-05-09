@@ -5,7 +5,6 @@
     border-radius: 8px;
     padding-top:20px;
     position: fixed;
-    
     top:7%;
     left: 27%;
     width:750px;
@@ -21,12 +20,30 @@
 .nomesMovimentacao{
     background: #ccc;
     margin-top: 0;
-    height: 160px;
+    height: 165px;
+    border-radius: 5px;
+}
+.dadosSaida{
+    width: 320px;
+    height: 135px;
+    border-radius: 5px;
+}
+.dados{
+    border-radius: 5px;
 }
 .nomes{
     margin-top: 0;
     width: 320px;
     float: left;
+}
+.destino #obs{
+    margin-left: 190px;
+    border-radius: 5px;
+    border-color: #fff;
+    width: 290px;
+    padding: 3px;
+    resize: none;
+    font-size: 16px;
 }
 .tituloDados{
     margin-top: 0;

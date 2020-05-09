@@ -9,7 +9,7 @@ strong, h2{
     max-width: 900px;
     max-height: 500px;
 }
-.mainBox{
+.mainBoxMovimentacao{
     padding: 0;
     display: grid;
     width: 900px;
@@ -128,7 +128,7 @@ button.close:before{
     bottom: 0;
     z-index: 20;
 }
-.mainRegistros{
+.mainMovimentacao{
     font-size: 12px;
     border-radius: 8px;
     padding-top: 5px;
@@ -140,7 +140,7 @@ button.close:before{
     margin: 0;
 }
 
-.mainBox .mainRegistros::-webkit-scrollbar {
+.mainBox .mainMovimentacao::-webkit-scrollbar {
     display: none;
 }
 
@@ -168,11 +168,11 @@ button.close:before{
     background-color: darkgray !important;
     columns: #000000; 
 } 
-.mainRegistros table{
+.mainMovimentacao table{
     width: 97%;
     table-layout:fixed;
 }
-.mainRegistros table thead th{
+.mainMovimentacao table thead th{
     height: 40px;
     table-layout:fixed;
 }
@@ -181,7 +181,7 @@ button.close:before{
     overflow: hidden;
 }
 
-.mainRegistros table tr:nth-child(even){
+.mainMovimentacao table tr:nth-child(even){
     background-color: #ccc;
 }
 p{

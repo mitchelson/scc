@@ -10,6 +10,8 @@ strong, h2{
     max-height: 500px;
 }
 .mainBox{
+    grid-template-columns: 300px 560px;
+    gap:10px;
     padding: 0;
     display: grid;
     width: 900px;
@@ -132,12 +134,28 @@ button.close:before{
     font-size: 12px;
     border-radius: 8px;
     padding-top: 5px;
-    width: 870px;
+    width: 550px;
     height:420px;
     max-height:420px;
     background:#dcdcdc;
     overflow: auto;
     margin: 0;
+    margin-left: 10px;
+}
+.expRegistros{
+    margin-right: 10px !important;
+    font-size: 12px;
+    border-radius: 8px;
+    padding-top: 5px;
+    width: 300px;
+    height:420px;
+    max-height:420px;
+    background:#dcdcdc;
+    overflow: auto;
+    margin: 0;
+}
+.expRegistros h2{
+    text-align: center;
 }
 
 .mainBox .mainRegistros::-webkit-scrollbar {
@@ -250,11 +268,13 @@ p{
     display: grid;
     justify-content: space-evenly;
 }
-#novaMovimentacao{
+#gerarDocumento{
     color: #fff;
+    cursor: pointer;
+    font-size: 16px;
     background-image: linear-gradient(to bottom right, green, #00ad10);
 }
-#novaMovimentacao:hover{
+#gerarDocumento:hover{
     background-image: linear-gradient(to bottom right, #004f07, #00ad10);
 }
 
@@ -262,12 +282,11 @@ p{
     width: 80px;
 }
 
-table .iconeDetalhe{
-    color: green;
+table .linkDetalhe{
     font-size: 15px;
     transition: 0.3s;
 }
-table .iconeDetalhe:hover{
+table .linkDetalhe:hover{
     cursor: pointer;
     color: #fff;
     background-color: #aaa;

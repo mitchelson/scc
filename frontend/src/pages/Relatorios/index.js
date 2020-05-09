@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { FaEye } from 'react-icons/fa';
+import DatePicker from 'react-datepicker';
+import { FaCalendar } from 'react-icons/fa';
 import api from '../../services/api';
 import Detail from './../../components/Detail';
-import Form from './../../components/Form';
 import './relatorio.css';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 function Relatorio() {
 
   //Armazena a lista de militares na constante militar
-  const [refresh, setRefresh] = useState(0);
   const [movimentos, setMovimentos] = useState([]);
   const [detail, setDetail] = useState([]);
-  const [showForm, setShowForm] = useState('none');
   const [showDetail, setShowDetail] = useState('none');
+  const [startDate, setStartDate] = useState(new Date());
   
   //Função para Listar Militar - OK
   useEffect(() => {
@@ -21,21 +22,8 @@ function Relatorio() {
       setMovimentos(response.data);
     }
     listarMovimentos();
-  }, [showForm]);
+  }, []);
   
-  function mostrarForm(){
-    if(showForm === 'none'){
-      setShowForm('block');
-    }
-    setRefresh(0);
-  }
-  function ocultarForm(){
-    if(showForm === 'block'){
-      setShowForm('none');
-    }
-    setRefresh(0);
-  }
-
   async function mostrarDetail(dataS){
     if(showDetail === 'none'){
       const response = await api.get(`/pesquisar-movimento?dataS=${dataS}`);
@@ -46,6 +34,17 @@ function Relatorio() {
   function ocultarDetail(){
     setShowDetail('none');
     setDetail([]);
+  }
+  function gerarPDF(){
+    var doc = new jsPDF({
+      orientation: 'landscape',
+      format: 'a4'
+    });
+    doc.text('Relatório de Movimentações', 115, 10);
+    doc.autoTable({ html: '#movRelatorio' });
+    doc.text('________________________________', 150, 190);
+    doc.text('Assinatura do Responsável', 165, 200);
+    doc.save('Relatorio.pdf');
   }
   
   //O que mostra na tela do navegador  
@@ -58,40 +57,51 @@ function Relatorio() {
         <button className="close" onClick={ocultarDetail} title="Nova Movimentação" />
         <Detail detail={detail} showDetail={showDetail} />
       </div>
-      <div className="formNovaMovimentacao" style={{display:showForm}}>
-        <button className="close" onClick={ocultarForm} title="Nova Movimentação" />
-        <Form showForm={showForm} className="form"/>
-      </div>
       <div className="mainBox">
-      <div className="fab"> 
-        <button className="main" onClick={mostrarForm} title="Nova Movimentação" />
-      </div>
-      <div className="mainRegistros">
-            <table>
-              <thead> 
-                <tr>
-                  <th>VIATURA</th>
-                  <th>DATA</th>
-                  <th>HORA</th>
-                  <th>DESTINO</th>
-                  <th>COMBUSTIVEL</th>
-                  <th>DETALHES</th>
-                </tr>
-              </thead> 
-              <tbody>
-                {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
-                  <tr key={mv._id}>
-                    <th>{mv.idViatura}</th>
-                    <th>{mv.dataS.match(/\d\d\d\d-\d\d-\d\d/)}</th>
-                    <th>{mv.dataS.match(/\d\d:\d\d:\d\d/)}</th>
-                    <th>{mv.destino}</th>
-                    <th>{mv.qtdCombustivelS}</th> 
-                    <th onClick={() => {mostrarDetail(mv.dataS)}} className="iconeDetalhe"><FaEye/></th>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="expRegistros">
+          <h2>Gerar Relatório PDF</h2>
+          <div className="inputDate">
+          Data de Início
+          <input />
           </div>
+          <div className="inputDate">
+          Data de Final
+          <input /><FaCalendar/>
+          </div>
+          <button id="gerarDocumento" onClick={gerarPDF}>Gerar</button>
+        </div>
+        <div className="mainRegistros">
+          <table id="movRelatorio">
+            <thead> 
+              <tr>
+                <th>VIATURA</th>
+                <th>ODOMETRO Saída/Chegada</th>
+                <th>DISTÂNCIA</th>
+                <th>DATA</th>
+                <th>HORA</th>
+                <th>DESTINO</th>
+                <th>CHEFE DE VIATURA</th>
+                <th>MOTORISTA PRINCIPAL</th>
+                <th>MOTORISTA AUXILIAR</th>
+              </tr>
+            </thead> 
+            <tbody>
+              {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
+                <tr key={mv._id} onClick={() => {mostrarDetail(mv.dataS)}} className="linkDetalhe">
+                  <th>{mv.idViatura}</th>
+                  <th>{mv.odometroS} KM / {mv.odometroC} KM</th>
+                  <th>{mv.odometroC - mv.odometroS} KM</th>
+                  <th>{mv.dataS.match(/\d\d\d\d-\d\d-\d\d/)}</th>
+                  <th>{mv.dataS.match(/\d\d:\d\d:\d\d/)}</th>
+                  <th>{mv.destino}</th>
+                  <th>{mv.idChefeViatura}</th>
+                  <th>{mv.idMotoristaP}</th>
+                  <th>{mv.idMotoristaA}</th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -44,36 +44,30 @@ function Detail(props){
     }, [showDetail]);
 
     async function finalizarMovimentacao(e){
-      alert("Finalizar Movimentação?");
       e.preventDefault();
       await api.post('/cadastrar-movimento', {
-        dataS,
+        dataS:detail.dataS,
         dataC,
         odometroC,
         qtdCombustivelC,
         aberto:false
       });
-      alert("cadastrar mov")
       await api.post('/atualizar-militar',{
         idMilitar: idChefeViatura,
         disponivel:"green"
       });
-      alert("chefe")
       await api.post('/atualizar-militar',{
         idMilitar: idMotoristaP,
         disponivel:"green"
       });
-      alert("motoristaP")
       await api.post('/atualizar-militar',{
         idMilitar: idMotoristaA,
         disponivel:"green"
       });
-      alert("motoristaA")
       await api.post('/atualizar-viatura',{
         idViatura,
         disponivel:"green"
       });
-      alert("viatura")
       setDia('');
       setDataS('');
       setHora('');
@@ -87,7 +81,7 @@ function Detail(props){
       setDestino('');
       setQtdCombustivelS('');
       setIdViatura('');
-      alert("Movimentação Cadastrada com Sucesso!");
+      alert("Movimentação Finalizada com Sucesso!");
     } 
     useEffect(() => {
       async function carregaData(){   
@@ -134,7 +128,7 @@ function Detail(props){
                     name="pelotao"
                     value={nomeViatura}
                     disabled
-                    placeholder={nomeViatura}
+                    placeholder="Viatura"
                   />
                 </div>
                 <p>Chefe de Viatura</p>
@@ -182,6 +176,7 @@ function Detail(props){
                   <input 
                     id="id"
                     name="id"
+                    disabled
                     value={nomeMotoristaA}
                     placeholder="Nome"
                   />
@@ -285,6 +280,15 @@ function Detail(props){
                       <option value="Cheio">Cheio</option>
                     </select>
                   </div>              
+                <div className="destino">
+                  <textarea 
+                    id="obs"
+                    name="obs"
+                    value={movimento.obs}
+                    onChange={e => setDestino(e.target.value)}
+                    placeholder="Observações"
+                  />
+                </div>         
               </div>
           </div>
           </div>
