@@ -28,14 +28,14 @@ strong, h3{
     margin-bottom: 0px;
     vertical-align: middle;
 }
-.inputGroup4{
+.destinoComb{
     height: 40px;
     width: 400px;
     margin-top: 0;
     display: grid;
     margin-left: 3px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: 250px 150px;
+    grid-template-columns: 255px 150px;
     gap:0px;
     margin-top: 0;
     margin-bottom: 0;

@@ -87,7 +87,7 @@ function Relatorio() {
             </thead> 
             <tbody>
               {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
-                <tr key={mv._id} onClick={() => {mostrarDetail(mv.dataS)}} className="linkDetalhe">
+                <tr key={mv._id} className="linkDetalhe">
                   <th>{mv.idViatura}</th>
                   <th>{mv.odometroS} KM / {mv.odometroC} KM</th>
                   <th>{mv.odometroC - mv.odometroS} KM</th>

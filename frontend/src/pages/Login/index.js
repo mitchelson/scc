@@ -27,6 +27,7 @@ function Login() {
       });
       localStorage.setItem('user', user.data.nome);
       localStorage.setItem('id', user.data.idMilitar);
+      localStorage.setItem('admin', user.data.admin);
       localStorage.setItem('auth', false);
       history.push('/main');
     } catch (error) {

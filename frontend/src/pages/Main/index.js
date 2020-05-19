@@ -9,6 +9,7 @@ function Main() {
 
   //Armazena a lista de militares na constante militar
   const [refresh, setRefresh] = useState(0);
+  const [existe, setExiste] = useState('');
   const [movimentos, setMovimentos] = useState([]);
   const [detail, setDetail] = useState([]);
   const [showForm, setShowForm] = useState('none');
@@ -19,6 +20,14 @@ function Main() {
     async function listarMovimentos(){    
       const response = await api.get('/listar-movimento?aberto=true');
       setMovimentos(response.data);
+      if(response.data.length === 0){
+        setExiste('block');
+      }else{
+        setExiste('none');
+      }
+      var date = Date.parse("2017-08-07T17:08:20.179Z");
+      var txtBonito = date.toLocaleString();
+      alert(txtBonito);
     }
     listarMovimentos();
   }, [showForm]);
@@ -77,12 +86,12 @@ function Main() {
                   <th>COMBUSTIVEL</th>
                   <th>DETALHES</th>
                 </tr>
-              </thead> 
+              </thead>
               <tbody>
-                {movimentos.map(mv => (     //   (Selecionar: Pleno, Meio tanque ou Cheio)   Faz um FOR dentro do array 'militar', e coloca em 'ml'
+                {movimentos.map(mv => (
                   <tr key={mv._id}>
                     <th>{mv.idViatura}</th>
-                    <th>{mv.dataS.match(/\d\d\d\d-\d\d-\d\d/)}</th>
+                    <th>{mv.dataS.toLocaleString('pt-BR')}</th>
                     <th>{mv.dataS.match(/\d\d:\d\d:\d\d/)}</th>
                     <th>{mv.destino}</th>
                     <th>{mv.qtdCombustivelS}</th> 
@@ -91,6 +100,7 @@ function Main() {
                 ))}
               </tbody>
             </table>
+            <div className="vazio" style={{display:existe}}>Não existem nenhuma movimentação!</div>
           </div>
       </div>
     </div>

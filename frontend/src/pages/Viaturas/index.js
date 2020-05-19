@@ -6,6 +6,8 @@ import './viatura.css';
 
 function Viatura() {
 
+  //Armazena dados do usuário (Administrador ou não)
+  const admin = localStorage.getItem('admin');
   //Armazena a lista de viaturas na constante viatura
   const [viatura, setViatura] = useState([]);
   const [militar, setMilitar] = useState([]);
@@ -31,7 +33,7 @@ function Viatura() {
     }
     listaViatura();
   }, []);
-
+  //Função para popular select de Militares com dados do banco
   useEffect(() => {
     async function militaresSelect(){    
       const response = await api.get('/listar-militar');
@@ -40,40 +42,45 @@ function Viatura() {
     militaresSelect();
   }, [militarReset]);
 
-  function clean(){
-    setReset(true);
-    setReset(false)
-  }
   //Função para Cadastrar/Atualizar viatura
   async function addViatura(e){
     e.preventDefault();
-    const response = await api.post('/cadastrar-viatura', {
-      idViatura,
-      nome,
-      tipo,
-      dataChegada,
-      chefeViatura,
-      motoristaPrincipal,
-      motoristaAuxiliar,
-      disponivel:"green",
-      categoria,
-    })
-    setidviatura('');
-    setNome('');
-    setTipo('');
-    setChefeViatura('');
-    setMotoristaP('');
-    setMotoristaA('');
-    setdataChegada(false);
-    setCategoria('');
-    setInputId(true);
-    setViatura(response.data);
+    if(admin === true){ //Testa se o usuário é administrador
+      const response = await api.post('/cadastrar-viatura', {
+        idViatura: idViatura.toUpperCase(),
+        nome,
+        tipo,
+        dataChegada,
+        chefeViatura,
+        motoristaPrincipal,
+        motoristaAuxiliar,
+        disponivel:"green",
+        categoria,
+      });
+      alert("Viatura cadastrada com Sucesso!");
+      setidviatura('');
+      setNome('');
+      setTipo('');
+      setChefeViatura('');
+      setMotoristaP('');
+      setMotoristaA('');
+      setdataChegada(false);
+      setCategoria('');
+      setInputId(true);
+      setViatura(response.data);
+    }else{
+      alert("Você não tem permição para criar uma nova viatura. Contate o administrador!");
+    }
   }   
 
   //Função para Deletar viatura             - OK
   async function rmViatura(id){
-    const response = await api.delete(`/deletar-viatura?idViatura=${id}`);
-    setViatura(response.data);
+    if(admin === true){ //Testa se o usuário é administrador
+      const response = await api.delete(`/deletar-viatura?idViatura=${id}`);
+      setViatura(response.data);
+    }else{
+      alert("Você não tem permissão para deletar uma viatura. Contate o administrador!")
+    }
   }
 
   return (
@@ -177,19 +184,22 @@ function Viatura() {
                 <tr key={vt._id}>
                   <td>{vt.idViatura}</td>
                   <td>{vt.nome}</td>
-                  <td><span style={{color:vt.disponivel}}>o</span></td>
+                  <td> <div style={{background:vt.disponivel, opacity:'70%', width:'85%', height:'20px'}}></div></td>
                   <td>
                     <span onClick={() => {  //Botão para editar viatura
-                      setidviatura(vt.idViatura);
-                      setInputId(false);
-                      setNome(vt.nome);
-                      setMotoristaP(vt.motoristaPrincipal);
-                      setMotoristaA(vt.motoristaAuxiliar);
-                      setdataChegada(vt.dataChegada);
-                      setDisponivel(vt.disponivel);
-                      setTipo(vt.tipo);
-                      setCategoria(vt.categoria);
-                      
+                      if(admin === true){
+                        setidviatura(vt.idViatura);
+                        setInputId(false);
+                        setNome(vt.nome);
+                        setMotoristaP(vt.motoristaPrincipal);
+                        setMotoristaA(vt.motoristaAuxiliar);
+                        setdataChegada(vt.dataChegada);
+                        setDisponivel(vt.disponivel);
+                        setTipo(vt.tipo);
+                        setCategoria(vt.categoria);
+                      }else{
+                        alert("Você não tem permissão para editar uma viatura. Contate o administrador!")
+                      }
                     }} id="iconeEdit"><FaEdit /></span>
                     <span onClick={() => {  //Botão para deletar Formulário
                       if (window.confirm('Deseja apagar essa viatura?')){

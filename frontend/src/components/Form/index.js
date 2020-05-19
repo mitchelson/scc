@@ -75,33 +75,29 @@ function Form({showForm}){
         idMotoristaP,
         idMotoristaA,
         idUsuario:localStorage.getItem('id'),
-        idViatura,
+        idViatura: idViatura.toUpperCase(),
         obs,
         destino,
         qtdCombustivelS,
         aberto:true
       });
-      alert("cadastrar mov")
       await api.post('/atualizar-militar',{
-        idMilitar: 3420906,
+        idMilitar: idChefeViatura,
         disponivel:"red"
       });
-      alert("chefe")
       await api.post('/atualizar-militar',{
-        idMilitar: 55555,
+        idMilitar: idMotoristaP,
         disponivel:"red"
       });
-      alert("motoristaP")
       await api.post('/atualizar-militar',{
-        idMilitar: 3420906,
+        idMilitar: idMotoristaA,
         disponivel:"red"
       });
-      alert("motoristaA")
       await api.post('/atualizar-viatura',{
-        idViatura,
+        idViatura: idViatura.toUpperCase(),
         disponivel:"red"
       });
-      alert("viatura")
+      alert("Movimentação Cadastrada com Sucesso!");
       setDia('');
       setDataS('');
       setHora('');
@@ -115,7 +111,6 @@ function Form({showForm}){
       setDestino('');
       setQtdCombustivelS('');
       setIdViatura('');
-      alert("Movimentação Cadastrada com Sucesso!");
     } 
 
 return (
@@ -155,7 +150,7 @@ return (
           placeholder="Odometro"
         />
       </div>
-      <div className="inputGroup4">
+      <div className="destinoComb">
         <input 
           id="destino"
           name="destino"
@@ -173,20 +168,21 @@ return (
       <p>Viatura</p>
       <div className="inputGroupMotoristas">
         <input 
+          
           id="id"
           name="id"
           value={idViatura}
           onChange={async e => {
             setIdViatura(e.target.value);
             try {
-              const response = await api.get(`/pesquisar-viatura?idViatura=${e.target.value}`);
+              const response = await api.get(`/pesquisar-viatura?idViatura=${e.target.value.toUpperCase()}`);
               setnomeViatura(response.data.nome);
             } catch (error) {
               setnomeViatura('Viatura Incorreta');
             }
             }
           }
-          placeholder="Placa"
+          placeholder="CÓD"
         />
         <input 
           id="pelotao"

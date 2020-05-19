@@ -5,6 +5,8 @@ import InputMask from 'react-input-mask';
 import './militar.css';
 
 function Militar() {
+  //Armazena dados do usuário (Administrador ou não)
+  const userAdmin = localStorage.getItem('admin');
 
   //Armazena a lista de militares na constante militar
   const [militar, setMilitar] = useState([]);
@@ -29,49 +31,66 @@ function Militar() {
     }
     listaMilitar();
   }, []);
-  
+
   //Função para Cadastrar/Atualizar Militar
   async function addMilitar(e){
     e.preventDefault();
-    const response = await api.post('/cadastrar-militar', {
-      idMilitar,
-      nome,
-      nomeGuerra,
-      pelotao,
-      dataNascimento,
-      eMotorista,
-      admin,
-      cursoMotorista,
-      disponivel:"green",
-      senha
-    })
-    setidMilitar('');
-    setNome('');
-    setnomeGuerra('');
-    setPelotao('');
-    setdataNascimento('');
-    seteMotorista(false);
-    setAdmin(false);
-    setcursoMotorista('');
-    setSenha('');
-    setInputId(true);
-
-    setMilitar(response.data);
+    if(userAdmin === true){
+      alert(admin);
+      const response = await api.post('/cadastrar-militar', {
+        idMilitar,
+        nome,
+        nomeGuerra,
+        pelotao,
+        dataNascimento,
+        eMotorista,
+        admin,
+        cursoMotorista,
+        disponivel:"green",
+        senha
+      })
+      setidMilitar('');
+      setNome('');
+      setnomeGuerra('');
+      setPelotao('');
+      setdataNascimento('');
+      seteMotorista(false);
+      setAdmin(false);
+      setcursoMotorista('');
+      setSenha('');
+      setInputId(true);
+      setMilitar(response.data);
+    } else {
+      alert("Você não tem permissão para criar um novo usuário. Contate o administrador");
+      setidMilitar('');
+      setNome('');
+      setnomeGuerra('');
+      setPelotao('');
+      setdataNascimento('');
+      seteMotorista(false);
+      setAdmin(false);
+      setcursoMotorista('');
+      setSenha('');
+      setInputId(true);
+    }
   }   
 
   //Função para Deletar Militar             - OK
   async function rmMilitar(id){
-    const response = await api.delete(`/deletar-militar?idMilitar=${id}`);
-    setMilitar(response.data);
+    if(userAdmin === true){
+      const response = await api.delete(`/deletar-militar?idMilitar=${id}`);
+      setMilitar(response.data);  
+    } else {
+      alert("Você não tem permissão para excluir um usuário. Contate o administrador!");
+    }
   }
-  
   return (
     <div className="containerMilitar">
       <div className="tituloMilitar">
         <h2>MILITAR</h2>
       </div>
       <div className="boxMilitar">
-        <form onSubmit={addMilitar}>   
+        <form onSubmit={addMilitar} >   
           <strong>FORMULÁRIO MILITAR</strong>
           <div className="inputGroup">
             <input 
@@ -161,19 +180,23 @@ function Militar() {
                 <tr key={ml._id}>
                   <td>{ml.idMilitar}</td>
                   <td>{ml.nome}</td>
-                  <td><span style={{color:ml.disponivel}}>o</span></td>
+                  <td> <div style={{background:ml.disponivel, opacity:'70%', width:'85%', height:'20px'}}></div></td>
                   <td>
                     <span onClick={() => {  //Botão para editar Militar
-                      setidMilitar(ml.idMilitar);
-                      setInputId(false);
-                      setNome(ml.nome);
-                      setnomeGuerra(ml.nomeGuerra);
-                      setdataNascimento(ml.dataNascimento);
-                      setPelotao(ml.pelotao);
-                      seteMotorista(ml.eMotorista);
-                      setAdmin(ml.admin);
-                      setcursoMotorista(ml.cursoMotorista);
-                      setSenha(ml.senha);
+                      if(userAdmin === true){
+                        setidMilitar(ml.idMilitar);
+                        setInputId(false);
+                        setNome(ml.nome);
+                        setnomeGuerra(ml.nomeGuerra);
+                        setdataNascimento(ml.dataNascimento);
+                        setPelotao(ml.pelotao);
+                        seteMotorista(ml.eMotorista);
+                        setAdmin(ml.admin);
+                        setcursoMotorista(ml.cursoMotorista);
+                        setSenha(ml.senha);
+                      }else{
+                        alert("Você não tem permissão para editar um usuário. Contate o administrador!");
+                      }
                     }} id="iconeEdit"><FaEdit /></span>
                     <span onClick={() => {  //Botão para deletar Formulário
                       if (window.confirm('Deseja apagar esse Militar?')){

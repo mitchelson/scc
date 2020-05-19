@@ -14,7 +14,7 @@ const ViaturaSchema = new mongoose.Schema({
         required:true,
     },
     dataChegada: {              //Indica a data de chegada da viatura
-        type: Number,
+        type: String,
         require: true
     },
     chefeViatura :{             //Indica o motorista principal da viatura

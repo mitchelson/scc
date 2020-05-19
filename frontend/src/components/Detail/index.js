@@ -53,19 +53,19 @@ function Detail(props){
         aberto:false
       });
       await api.post('/atualizar-militar',{
-        idMilitar: idChefeViatura,
+        idMilitar: detail.idChefeViatura,
         disponivel:"green"
       });
       await api.post('/atualizar-militar',{
-        idMilitar: idMotoristaP,
+        idMilitar: detail.idMotoristaP,
         disponivel:"green"
       });
       await api.post('/atualizar-militar',{
-        idMilitar: idMotoristaA,
+        idMilitar: detail.idMotoristaA,
         disponivel:"green"
       });
       await api.post('/atualizar-viatura',{
-        idViatura,
+        idViatura: detail.idViatura,
         disponivel:"green"
       });
       setDia('');
@@ -82,6 +82,7 @@ function Detail(props){
       setQtdCombustivelS('');
       setIdViatura('');
       alert("Movimentação Finalizada com Sucesso!");
+      document.location.reload(true);
     } 
     useEffect(() => {
       async function carregaData(){   
@@ -98,16 +99,19 @@ function Detail(props){
     useEffect(() => {
       async function nomes(){
         const nomeViatura = await api.get(`/pesquisar-viatura?idViatura=${movimento.idViatura}`);
-        setnomeViatura(nomeViatura.data.nome);
         const nomeChefe = await api.get(`/pesquisar-militar?idMilitar=${movimento.idChefeViatura}`);
-        setnomeChefeViatura(nomeChefe.data.nome);
         const nomeMotoristaP = await api.get(`/pesquisar-militar?idMilitar=${movimento.idMotoristaP}`);
-        setnomeMotoristaP(nomeMotoristaP.data.nome);
         const nomeMotoristaA = await api.get(`/pesquisar-militar?idMilitar=${movimento.idMotoristaA}`);
-        setnomeMotoristaA(nomeMotoristaA.data.nome);
+        if(nomeViatura.data.nome){
+          alert(detail)
+          setnomeViatura(nomeViatura.data.nome);
+          setnomeChefeViatura(nomeChefe.data.nome);
+          setnomeMotoristaP(nomeMotoristaP.data.nome);
+          setnomeMotoristaA(nomeMotoristaA.data.nome);
+        }
       }
-      
-    }, []);
+      nomes();
+    }, [detail]);
   return (
     <div className="mainDetail" style={{display:showDetail}}>
       <form onSubmit={finalizarMovimentacao}>   
