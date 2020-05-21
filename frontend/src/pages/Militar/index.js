@@ -35,7 +35,7 @@ function Militar() {
   //Função para Cadastrar/Atualizar Militar
   async function addMilitar(e){
     e.preventDefault();
-    if(userAdmin === true){
+    if(userAdmin === "true"){
       alert(admin);
       const response = await api.post('/cadastrar-militar', {
         idMilitar,
@@ -77,7 +77,7 @@ function Militar() {
 
   //Função para Deletar Militar             - OK
   async function rmMilitar(id){
-    if(userAdmin === true){
+    if(userAdmin === "true"){
       const response = await api.delete(`/deletar-militar?idMilitar=${id}`);
       setMilitar(response.data);  
     } else {
@@ -183,7 +183,7 @@ function Militar() {
                   <td> <div style={{background:ml.disponivel, opacity:'70%', width:'85%', height:'20px'}}></div></td>
                   <td>
                     <span onClick={() => {  //Botão para editar Militar
-                      if(userAdmin === true){
+                      if(userAdmin === "true"){
                         setidMilitar(ml.idMilitar);
                         setInputId(false);
                         setNome(ml.nome);

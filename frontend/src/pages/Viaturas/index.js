@@ -45,7 +45,7 @@ function Viatura() {
   //Função para Cadastrar/Atualizar viatura
   async function addViatura(e){
     e.preventDefault();
-    if(admin === true){ //Testa se o usuário é administrador
+    if(admin === "true"){ //Testa se o usuário é administrador
       const response = await api.post('/cadastrar-viatura', {
         idViatura: idViatura.toUpperCase(),
         nome,
@@ -75,7 +75,7 @@ function Viatura() {
 
   //Função para Deletar viatura             - OK
   async function rmViatura(id){
-    if(admin === true){ //Testa se o usuário é administrador
+    if(admin === "true"){ //Testa se o usuário é administrador
       const response = await api.delete(`/deletar-viatura?idViatura=${id}`);
       setViatura(response.data);
     }else{
@@ -187,7 +187,7 @@ function Viatura() {
                   <td> <div style={{background:vt.disponivel, opacity:'70%', width:'85%', height:'20px'}}></div></td>
                   <td>
                     <span onClick={() => {  //Botão para editar viatura
-                      if(admin === true){
+                      if(admin === "true"){
                         setidviatura(vt.idViatura);
                         setInputId(false);
                         setNome(vt.nome);

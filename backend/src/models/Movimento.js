@@ -18,20 +18,32 @@ const MovimentoSchema = new mongoose.Schema({
     distancia: {                    //Indica a distancia percorrida, subtraindo o odometro de saida com o odometro de chegada
         type: Number,
     },
-    idChefeViatura: {               //Indica o chefe da viatura nessa movimentação
-        type: Number,
+    idChefeViatura: {
+        type:Number,
+        required:true
+    },
+    idMotoristaP: {
+        type:Number,
+        required:true
+    },
+    nomeMotoristaP: {
+        type:Number,
+        required:true
+    },
+    nomeChefeViatura: {               //Indica o chefe da viatura nessa movimentação
+        type: String,
         require: true,
     },
-    idMotoristaP: {                 //Indica o id do motorista principal nessa movimentação
-        type: Number,
+    nomeMotoristaP: {                 //Indica o id do motorista principal nessa movimentação
+        type: String,
         require: true
     },
-    idMotoristaA: {                 //Indica o id do motorista auxiliar nessa movimentação
-        type: Number,
+    nomeMotoristaA: {                 //Indica o id do motorista auxiliar nessa movimentação
+        type: String,
         require: true
     },
-    idUsuario: {                    //Indica o id do usuário responsavel por anotar essa movimentação
-        type: Number,
+    nomeUsuario: {                    //Indica o id do usuário responsavel por anotar essa movimentação
+        type: String,
         require: true
     },
     idViatura: {                    //Indica o id da Viatura que será movimentada

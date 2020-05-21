@@ -72,9 +72,12 @@ function Form({showForm}){
         dataS,
         odometroS,
         idChefeViatura,
+        nomeChefeViatura,
         idMotoristaP,
+        nomeMotoristaP,
         idMotoristaA,
-        idUsuario:localStorage.getItem('id'),
+        nomeMotoristaA,
+        nomeUsuario:localStorage.getItem('nome'),
         idViatura: idViatura.toUpperCase(),
         obs,
         destino,
@@ -111,6 +114,7 @@ function Form({showForm}){
       setDestino('');
       setQtdCombustivelS('');
       setIdViatura('');
+      setnomeViatura('Viatura');
     } 
 
 return (
@@ -202,7 +206,7 @@ return (
             setidChefeViatura(e.target.value);
             try {
               const response = await api.get(`/pesquisar-militar?idMilitar=${e.target.value}`);
-              setnomeChefeViatura(response.data.nome);
+              setnomeChefeViatura(response.data.nomeGuerra);
             } catch (error) {
               setnomeChefeViatura('Militar Incorreto');
             }
@@ -228,7 +232,7 @@ return (
             setIdMotoristaP(e.target.value);
             try {
               const response = await api.get(`/pesquisar-militar?idMilitar=${e.target.value}`);
-              setnomeMotoristaP(response.data.nome);
+              setnomeMotoristaP(response.data.nomeGuerra);
             } catch (error) {
               setnomeMotoristaP('Militar Incorreto');
             }
@@ -254,7 +258,7 @@ return (
             setIdMotoristaA(e.target.value);
             try {
               const response = await api.get(`/pesquisar-militar?idMilitar=${e.target.value}`);
-              setnomeMotoristaA(response.data.nome);
+              setnomeMotoristaA(response.data.nomeGuerra);
             } catch (error) {
               setnomeMotoristaA('Militar Incorreto');
             }

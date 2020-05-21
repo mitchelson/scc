@@ -15,19 +15,17 @@ function Main() {
   const [showForm, setShowForm] = useState('none');
   const [showDetail, setShowDetail] = useState('none');
   
-  //Função para Listar Militar - OK
+  //Função para Listar Movimentos abertos
   useEffect(() => {
     async function listarMovimentos(){    
-      const response = await api.get('/listar-movimento?aberto=true');
+      const response = await api.get('/listar-movimento');
       setMovimentos(response.data);
+      //Caso não haja movimentos ele mostra o aviso de Vazio
       if(response.data.length === 0){
         setExiste('block');
       }else{
         setExiste('none');
       }
-      var date = Date.parse("2017-08-07T17:08:20.179Z");
-      var txtBonito = date.toLocaleString();
-      alert(txtBonito);
     }
     listarMovimentos();
   }, [showForm]);

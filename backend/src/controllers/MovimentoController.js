@@ -3,7 +3,9 @@ const Movimento = require('../models/Movimento');
 class MovimentoController {
     async index(request, response){         //Listar movimentação com filtro de aberta(true) ou fechada(false)
         try{
-            const movimento = await Movimento.find(request.query);
+            const movimento = await Movimento.find({
+                aberto: true
+            });
             return response.json(movimento);
         } catch (err) {
             return response.status(400).json({error: "Erro ao Listar Movimentações"});
@@ -12,6 +14,21 @@ class MovimentoController {
     async show(request, response){         //Listar movimentação com filtro de aberta(true) ou fechada(false)
         try{
             const movimento = await Movimento.findOne(request.query);
+            return response.json(movimento);    
+        } catch (err) {
+            return response.status(400).json({error: "Erro ao Listar Movimentações"});
+        }
+    }
+    async filtroData(request, response){ 
+        var today = new Date();        //Listar movimentação filtrando pela data e se está fechada
+        var data = today.getFullYear()+'-'+("0"+(today.getMonth()+1)).slice(-2)+'-'+("0"+(today.getDate())).slice(-2);
+        try{
+            const movimento = await Movimento.find({
+                "dataC":{
+                    $gte: data
+                },
+                "aberto": false
+            });
             return response.json(movimento);    
         } catch (err) {
             return response.status(400).json({error: "Erro ao Listar Movimentações"});

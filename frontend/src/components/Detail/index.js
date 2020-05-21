@@ -95,23 +95,31 @@ function Detail(props){
       }
       carregaData();
     }, [detail]);
-
-    useEffect(() => {
-      async function nomes(){
-        const nomeViatura = await api.get(`/pesquisar-viatura?idViatura=${movimento.idViatura}`);
-        const nomeChefe = await api.get(`/pesquisar-militar?idMilitar=${movimento.idChefeViatura}`);
-        const nomeMotoristaP = await api.get(`/pesquisar-militar?idMilitar=${movimento.idMotoristaP}`);
-        const nomeMotoristaA = await api.get(`/pesquisar-militar?idMilitar=${movimento.idMotoristaA}`);
-        if(nomeViatura.data.nome){
-          alert(detail)
-          setnomeViatura(nomeViatura.data.nome);
-          setnomeChefeViatura(nomeChefe.data.nome);
-          setnomeMotoristaP(nomeMotoristaP.data.nome);
-          setnomeMotoristaA(nomeMotoristaA.data.nome);
-        }
+    async function exluirMovimento(){
+      if(window.confirm("Tem certeza que deseja excluir essa movimentação? Essa operação não poderá ser desfeita!")){
+        await api.delete(`/deletar-movimento?_id=${movimento._id}`);
+        alert("Movimento excluído!");
+        await api.post('/atualizar-militar',{
+          idMilitar: detail.idChefeViatura,
+          disponivel:"green"
+        });
+        await api.post('/atualizar-militar',{
+          idMilitar: detail.idMotoristaP,
+          disponivel:"green"
+        });
+        await api.post('/atualizar-militar',{
+          idMilitar: detail.idMotoristaA,
+          disponivel:"green"
+        });
+        await api.post('/atualizar-viatura',{
+          idViatura: detail.idViatura,
+          disponivel:"green"
+        });
+        window.location.reload();
+      }else{
+        alert("Operação cancelada!");
       }
-      nomes();
-    }, [detail]);
+    }
   return (
     <div className="mainDetail" style={{display:showDetail}}>
       <form onSubmit={finalizarMovimentacao}>   
@@ -126,13 +134,6 @@ function Detail(props){
                     name="id"
                     value={movimento.idViatura}
                     placeholder="Placa"
-                  />
-                  <input 
-                    id="pelotao"
-                    name="pelotao"
-                    value={nomeViatura}
-                    disabled
-                    placeholder="Viatura"
                   />
                 </div>
                 <p>Chefe de Viatura</p>
@@ -298,7 +299,7 @@ function Detail(props){
           </div>
         <div className="btnDetail">
           <button className="finalizarMovimentacao" type="submit">Finalizar Movimento</button>
-          <button className="limparMovimentacao"><span>Editar</span></button>
+          <button className="limparMovimentacao" type="button" onClick={exluirMovimento}><span>Excluir</span></button>
         </div>
       </form>
     </div>
