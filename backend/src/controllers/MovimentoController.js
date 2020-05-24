@@ -1,59 +1,55 @@
-const Movimento = require('../models/Movimento');
+const Movimento = require("../models/Movimento");
 
 class MovimentoController {
-    async index(request, response){         //Listar movimentação com filtro de aberta(true) ou fechada(false)
-        try{
-            const movimento = await Movimento.find({
-                aberto: true
-            });
-            return response.json(movimento);
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Listar Movimentações"});
-        }
+  //Listar movimentação com filtro quem vem do front-end
+  async index(request, response) {
+    try {
+      const movimento = await Movimento.find(request.body);
+      return response.json(movimento);
+    } catch (err) {
+      return response
+        .status(400)
+        .json({ error: "Erro ao Listar Movimentações" });
     }
-    async show(request, response){         //Listar movimentação com filtro de aberta(true) ou fechada(false)
-        try{
-            const movimento = await Movimento.findOne(request.query);
-            return response.json(movimento);    
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Listar Movimentações"});
-        }
+  }
+  //Listar movimentação
+  async show(request, response) {
+    try {
+      const movimento = await Movimento.findOne(request.query);
+      return response.json(movimento);
+    } catch (err) {
+      return response
+        .status(400)
+        .json({ error: "Erro ao Listar Movimentações" });
     }
-    async filtroData(request, response){ 
-        var today = new Date();        //Listar movimentação filtrando pela data e se está fechada
-        var data = today.getFullYear()+'-'+("0"+(today.getMonth()+1)).slice(-2)+'-'+("0"+(today.getDate())).slice(-2);
-        try{
-            const movimento = await Movimento.find({
-                "dataC":{
-                    $gte: data
-                },
-                "aberto": false
-            });
-            return response.json(movimento);    
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Listar Movimentações"});
-        }
+  }
+  //Cadastrar/Editar movimentações
+  async store(request, response) {
+    try {
+      const mov = await Movimento.findOneAndUpdate(
+        { dataS: request.body.dataS },
+        { $set: request.body },
+        { upsert: true }
+      );
+      return response.json(mov);
+    } catch (err) {
+      return response
+        .status(400)
+        .json({ error: "Erro ao Cadastrar Movimento" });
     }
-    async store(request, response){         //Cadastrar/Editar movimentações
-        try{
-            const mov = await Movimento.findOneAndUpdate(
-                {dataS: request.body.dataS},
-                {$set:request.body}, 
-                {upsert: true});
-            return response.json(mov);
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Cadastrar Movimento"});
-        }
+  }
+  //Deletar movimentações específicas, necessita de parametro id
+  async destroy(request, response) {
+    try {
+      await Movimento.deleteOne(request.query);
+      const mov = await Movimento.find();
+      return response.json(mov);
+    } catch (err) {
+      return response
+        .status(400)
+        .json({ error: "Erro ao Deletar Registro do Movimento" });
     }
-    async destroy(request, response){       //Deletar movimentações específicas, necessita de parametro id
-        try{
-            await Movimento.deleteOne(request.query);
-            const mov = await Movimento.find();
-            return response.json(mov);
-        } catch (err) {
-            return response.status(400).json({error: "Erro ao Deletar Registro do Movimento"});
-        }
-    } 
+  }
 }
 
 module.exports = new MovimentoController();
