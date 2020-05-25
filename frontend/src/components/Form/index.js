@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { FaSave } from "react-icons/fa";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
 import "./form.css";
 
 function Form({ showForm }) {
-  const [detail, setDetail] = useState([]);
-
   const [dia, setDia] = useState("");
   const [hora, setHora] = useState("");
   const [dataS, setDataS] = useState("");
 
   const [odometroS, setOdometroS] = useState("");
-
-  const [obs, setObs] = useState("");
 
   const [idChefeViatura, setidChefeViatura] = useState("");
   const [nomeChefeViatura, setnomeChefeViatura] = useState("");
@@ -85,7 +80,6 @@ function Form({ showForm }) {
       nomeMotoristaA,
       nomeUsuario: localStorage.getItem("nome"),
       idViatura: idViatura.toUpperCase(),
-      obs,
       destino,
       qtdCombustivelS,
       aberto: true,
@@ -132,7 +126,6 @@ function Form({ showForm }) {
             mask="9999/99/99"
             id="dataNascimento"
             disabled
-            name="dataNascimento"
             value={dia}
             onChange={(e) => {
               setDia(e.target.value);

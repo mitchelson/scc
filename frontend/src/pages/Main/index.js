@@ -6,14 +6,13 @@ import Form from "./../../components/Form";
 import "./main.css";
 
 function Main() {
-  //Armazena a lista de militares na constante militar
   const [existe, setExiste] = useState("");
   const [movimentos, setMovimentos] = useState([]);
   const [detail, setDetail] = useState([]);
   const [showForm, setShowForm] = useState("none");
   const [showDetail, setShowDetail] = useState("none");
 
-  //Função para Listar Movimentos abertos
+  //Carrega os movimentos abertos
   useEffect(() => {
     async function listarMovimentos() {
       const response = await api.post("/listar-movimento", {
@@ -29,18 +28,19 @@ function Main() {
     }
     listarMovimentos();
   }, [showForm]);
-
+  //Mostra formulario de nova movimentação
   function mostrarForm() {
     if (showForm === "none") {
       setShowForm("block");
     }
   }
+  //Oculta formulario de nova movimentação
   function ocultarForm() {
     if (showForm === "block") {
       setShowForm("none");
     }
   }
-
+  //Mostra a janela com os detalhes da movimetação levando os dados da movimentação clicada
   async function mostrarDetail(dataS) {
     if (showDetail === "none") {
       const response = await api.get(`/pesquisar-movimento?dataS=${dataS}`);
@@ -48,12 +48,12 @@ function Main() {
       setShowDetail("block");
     }
   }
+  //Mostra a janela com os detalhes da movimetação
   function ocultarDetail() {
     setShowDetail("none");
     setDetail([]);
   }
 
-  //O que mostra na tela do navegador
   return (
     <div className="mainContainer">
       <div className="tituloMain">
@@ -123,5 +123,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;

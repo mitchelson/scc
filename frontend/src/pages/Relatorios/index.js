@@ -11,14 +11,13 @@ function Relatorio() {
   const [movimentos, setMovimentos] = useState([]);
   const [dataInicio, setdataInicio] = useState("");
   const [dataFinal, setdataFinal] = useState("");
-  const [inicio, setInicio] = useState("");
-  const [final, setFinal] = useState("");
 
   //Função para Listar Militar - OK
   useEffect(() => {
     async function listarMovimentos() {
-      //Lista os movimentos do dia atual
+      //Testa se os campos de DataInicio/DataFinal estão preenchidos
       if (dataInicio !== "" && dataFinal > dataInicio) {
+        //Busca os movimentos no intervalo indicado nos campos
         const response = await api.post("/listar-movimento", {
           aberto: false,
           dataC: {
@@ -38,6 +37,7 @@ function Relatorio() {
         });
         setMovimentos(response.data);
       } else {
+        //Caso os campos de datas estejam vazios ele carrega os movimentos do dia atual
         const response = await api.post("/listar-movimento", {
           aberto: false,
           dataC: {
@@ -51,7 +51,9 @@ function Relatorio() {
   }, [dataInicio, dataFinal]);
 
   function gerarPDF() {
+    //Verifica se há movimentos para carregar no relatório
     if (movimentos.length > 0) {
+      //Configura o documento
       var doc = new jsPDF({
         orientation: "landscape",
         format: "a4",
@@ -153,5 +155,4 @@ function Relatorio() {
     </div>
   );
 }
-
 export default Relatorio;

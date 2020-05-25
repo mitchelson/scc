@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../../services/api";
 import InputMask from "react-input-mask";
+import moment from "moment";
 import "../Detail/detail.css";
 
 function Detail(props) {
@@ -13,22 +14,7 @@ function Detail(props) {
   const [dataS, setDataS] = useState("");
   const [dataC, setDataC] = useState("");
 
-  const [odometroS, setOdometroS] = useState("");
   const [odometroC, setOdometroC] = useState("");
-
-  const [idChefeViatura, setidChefeViatura] = useState("");
-  const [nomeChefeViatura, setnomeChefeViatura] = useState("");
-
-  const [idMotoristaP, setIdMotoristaP] = useState("");
-  const [nomeMotoristaP, setnomeMotoristaP] = useState("");
-
-  const [idMotoristaA, setIdMotoristaA] = useState("");
-  const [nomeMotoristaA, setnomeMotoristaA] = useState("");
-
-  const [idViatura, setIdViatura] = useState("");
-  const [nomeViatura, setnomeViatura] = useState("");
-
-  const [destino, setDestino] = useState("");
 
   const [qtdCombustivelS, setQtdCombustivelS] = useState("");
   const [qtdCombustivelC, setQtdCombustivelC] = useState("");
@@ -67,16 +53,6 @@ function Detail(props) {
       idViatura: detail.idViatura,
       disponivel: "green",
     });
-    setOdometroS("");
-    setIdMotoristaP("");
-    setnomeMotoristaP("Nome");
-    setIdMotoristaA("");
-    setnomeMotoristaA("Nome");
-    setidChefeViatura("");
-    setnomeChefeViatura("Nome");
-    setDestino("");
-    setQtdCombustivelS("");
-    setIdViatura("");
     alert("Movimentação Finalizada com Sucesso!");
     document.location.reload(true);
   }
@@ -209,10 +185,15 @@ function Detail(props) {
                 <InputMask
                   mask="9999/99/99"
                   name="dataChegada"
-                  value={dia}
+                  value={moment().format("DD/MM/YYYY")}
                   disabled
                 />
-                <InputMask mask="99:99:99" name="hora" value={hora} disabled />
+                <InputMask
+                  mask="99:99:99"
+                  name="hora"
+                  value={moment().format("HH:MM:SS")}
+                  disabled
+                />
               </div>
               <div className="dadosC">
                 <input

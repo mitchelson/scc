@@ -1,1 +1,1 @@
-export const isAuthenticated = () => localStorage.getItem('auth');
+export const isAuthenticated = () => localStorage.getItem("auth");

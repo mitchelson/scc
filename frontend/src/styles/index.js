@@ -1,13 +1,13 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   width: 1100px;
   height: 550px;
   margin: auto;
-  background:#fff;
-  border-radius:8px;
-  box-shadow:6px 6px 6px 3px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 6px 6px 6px 3px rgba(0, 0, 0, 0.4);
 `;
 
 export default createGlobalStyle`
